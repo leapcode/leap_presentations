@@ -1,6 +1,22 @@
 Leap Presentations
 ==================
 
+Setup
+-----
+
+    git clone https://leap.se/git/leap_presentations
+    cd leap_presentations
+    git submodule sync && git submodule update --init
+
+
+Updating / Pulling
+------------------
+
+    cd leap_presentations
+    git pull
+    git submodule sync && git submodule update --init    
+
+
 Directory Layout
 ----------------
 
