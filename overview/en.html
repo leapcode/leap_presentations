@@ -1,0 +1,221 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Leap Encryption Access Project</title>
+    <meta name="description" content="Tools für sichere Kommunikation im Netz">
+    <meta name="author" content="Varac">
+            
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+                            
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+                            
+    <link rel="stylesheet" href="../tools/reveal.js/css/reveal.min.css"> 
+    <link rel="stylesheet" href="../tools/reveal.js/css/theme/default.css" id="theme">
+                            
+    <!-- For syntax highlighting -->
+    <link rel="stylesheet" href="../tools/reveal.js/lib/css/zenburn.css">
+                    
+    <!-- If the query includes 'print-pdf', use the PDF print sheet -->
+    <script>                
+            document.write( '<link rel="stylesheet" href="../tools/reveal.js/css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+    </script>      
+
+
+  </head>
+
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        <section>
+          <h2>LEAP Encryption Access Project</h2>
+        </section>
+
+        <section>
+          <li>Tools for secure network communications</li>
+          <li>Encryption should be simple to provide and use</li>
+          <li>Decentralization of service providers</li>
+        </section>
+
+        <section>
+          <section>
+            <h2>For Users</h2>
+            <li>Bitmask-Client for Mac OS, Linux, Android (Windows coming)</li>
+          </section>
+          <section>
+            <img width="600" height="640" src="../img/de/bitmask-client-0.3.4.png" alt="Bitmask-Client">
+          </section>
+        </section>
+
+        <section>
+          <section>
+            <h2>For Providers</h2>
+            <ul>
+              <li>Automate Installation and Configuration of the services</li>
+              <li>Secure Crypto presets (TLS parameters, etc)</li>
+            </ul>  
+          </section>
+          <section>
+            <h2>leap-platform</h2>
+            <li>Puppet recipes for configuring the server</li>
+            <pre><code data-trim contenteditable>
+# smtp TLS                                                                    
+postfix::config {                                                             
+  'smtp_use_tls':        value  => 'yes';                                     
+  'smtp_tls_CApath':     value  => '/etc/ssl/certs/';                         
+  'smtp_tls_CAfile':     value  => $ca_path;                                  
+  'smtp_tls_cert_file':  value  => $cert_path;                                
+  'smtp_tls_key_file':   value  => $key_path;                                 
+  'smtp_tls_ask_ccert':  value  => 'yes';                                     
+  'smtp_tls_loglevel':   value  => '1';                                       
+  'smtp_tls_exclude_ciphers':                                                 
+    value => 'aNULL, MD5, DES';                                               
+  # upstream default is md5 (since 2.5 and older used it), we force sha1      
+  'smtp_tls_fingerprint_digest':                                              
+    value => 'sha1';                                                          
+  'smtp_tls_session_cache_database':                                          
+    value => 'btree:${queue_directory}/smtp_cache';                           
+  'smtp_tls_security_level':                                                  
+    value  => 'may';                                                          
+  # see issue #4011                                                           
+  'smtp_tls_protocols':                                                       
+    value => '!SSLv2, !SSLv3';                                                
+}                            
+            </code></pre>
+
+          </section>
+          <section>
+            <h2>Provider Config</h2>
+            <li>Server Layout, IPs, contact details, etc</li>
+            <pre><code data-trim contenteditable>
+$ cat provider.json 
+//
+// General service provider configuration.
+//
+{
+  "domain": "example.org",
+  "name": {
+    "en": "example"
+  },
+  "description": {
+    "en": "You really should change this text"
+  },
+  "contacts": {
+    "default": "admin@example.org"
+  },
+  "languages": ["en"],
+  "default_language": "en",
+  "enrollment_policy": "open"
+}
+
+$ cat nodes/web1.json 
+{
+  "ip_address": "99.231.92.23",
+  "services": "webapp",
+  "tags": "production"
+}
+            </code></pre>
+          </section>
+          <section>
+            <h2>Leap-cli</h2>
+            <li>Command Line Tools for Admins</li>
+            <pre><code data-trim contenteditable>
+$ leap --yes deploy
+ Deploying to these nodes: web1, vpn1, couch1
+ = updated hiera/couch1.yaml
+ = updated hiera/web1.yaml
+ = checking node 
+   - [web1] ok
+   - [couch1] ok
+   - [vpn1] ok
+ = synching configuration files
+   - hiera/web1.yaml -> web1:/etc/leap/hiera.yaml
+   - hiera/vpn1.yaml -> vpn1:/etc/leap/hiera.yaml
+   - hiera/couch1.yaml -> couch1:/etc/leap/hiera.yaml
+   - files/branding/tail.scss, files/branding/head.scss -> web1:/etc/leap
+ = synching puppet manifests
+   - /home/demo/leap/demo/leap_platform/[bin,puppet] -> web1:/srv/leap
+   - /home/demo/leap/demo/leap_platform/[bin,puppet] -> vpn1:/srv/leap
+   - /home/demo/leap/demo/leap_platform/[bin,puppet] -> couch1:/srv/leap
+...
+            </code></pre>
+          </section>
+          <section>
+            <h2>Leap-cli Screencasts</h2>
+            <li><a href="http://shelr.tv/users/524415e69660807910000021">Shelr Screencasts</a> - Setup and Installation of a Provider</li>
+          </section>
+
+        </section>
+
+        <section>
+          <h2>Services</h2>
+          <p>Encrypted Internet Proxy aka VPN</p>
+          <p>Email</p>
+          <p>Chat (in progress)</p>
+        </section>
+        
+        <section>
+          <h2>Services in Planning</h2>
+          <p>Client-Encrypted Filehosting</p>
+          <p>Voip</p>
+          <p>Collaborative Text Editor</p>
+        </section>
+
+        <section>
+          <section>
+            <h2>Provider Online</h2>
+            <li><a href="https://bitmask.net">Bitmask.net</a> - Reference Provider of LEAP </li>
+            <li>soon to be open for beta testers</li>
+          </section>
+
+          <section>
+            <h2>Interested Providers</h2>
+            <li><a href="https://calyxinstitute.org">The Calyx Institute</a></li>
+            <!--<li><a href="https://genopoly.org">Genopoly.org</a></li>-->
+            <li><a href="https://riseup.net">The Riseup Collective</a></li>
+            <li>...</li>
+          </section>
+        </section>
+
+         <section>
+           <h2>Etc</h2>
+           <li>Website: <a href="https://leap.se">https://leap.se</a></li>
+           <li>Github Mirror: <a href="https://github.com/leapcode">https://github.com/leapcode</a></li>
+           <li>Made with<a href="https://github.com/hakimel/reveal.js">reveal.js</a></li>
+</p>
+         </section>
+
+      </div>
+
+    </div>
+
+    <script src="../tools/reveal.js/lib/js/head.min.js"></script>
+    <script src="../tools/reveal.js/js/reveal.min.js"></script>
+
+    <script>
+      // Full list of configuration options avai  lable here:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+
+        theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+        transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+
+        // Optional libraries used to extend on reveal.js
+        dependencies: [
+        { src: '../tools/reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+        { src: '../tools/reveal.js/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+        { src: '../tools/reveal.js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+        { src: '../tools/reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+        { src: '../tools/reveal.js/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+        { src: '../tools/reveal.js/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+        ]
+      });
+    </script>
+
+  </body>
+</html>
