@@ -41,6 +41,95 @@
         </section>
 
         <section>
+          <section>
+            <h2>Crypto is Hard</h2>
+	    <h4 class="fragment">But wait, you said...</h4>
+            <h2 class="fragment" style="line-height:1.2em">Encryption should be<br /><em style="padding-right:0.2em;">simple</em> to provide and <em style="padding-right:0.2em;">easy</em> to use</h2>
+	    <h4 class="fragment">So...</h4>
+          </section>
+          <section>
+	    <h2>Solve the Hard Problems</h2>
+	    <div class="fragment">
+              <h3>The &#8220;Big 7&#8221;</h3>
+              <ol>
+                <li>Authenticity problem</li>
+                <li>Meta-data problem</li>
+                <li>Asynchronous problem</li>
+                <li>Group problem</li>
+                <li>Resource problem</li>
+                <li>Availability problem</li>
+                <li>Update problem</li>
+              </ol>
+	    </div>
+          </section>
+          <section>
+            <h2>Authenticity problem</h2>
+            <blockquote style="margin-bottom:2em;">Public key validation is very difficult for users to manage, but without it you cannot have confidentiality</blockquote>
+            <li class="fragment"><span style="font-weight:bold;">Nicknym</span> - auto discovery and validation of public keys, transparently!</li>
+          </section>
+          <section>
+            <h2>Meta-data problem</h2>
+            <blockquote style="margin-bottom:2em;">Existing protocols are vulnerable to meta-data analysis, even though meta-data is often much more sensitive than content</blockquote>
+            <div class="fragment">
+	      <ul>
+                <li>Downgrade-proof <strong>DNSSEC/DANE</strong></li>
+	      </ul>
+              <p style="margin-top:1.1em;">With one or more opportunistic schemes:</p>
+	      <ul>
+                <li>Auto <strong>alias pairs</strong></li>
+                <li><strong>Onion routing</strong> headers</li>
+                <li>Third party <strong>dropbox</strong></li>
+                <li><strong>Mixmaster</strong> with signatures</li>
+	      </ul>
+            </div>
+          </section>
+          <section>
+            <h2>Asynchronous problem</h2>
+            <blockquote style="margin-bottom:2em;">For encrypted communication, you must currently choose between forward secrecy or the ability to communicate asynchronously</blockquote>
+	    <div class="fragment">
+	      <ul>
+                <li>OpenPGP vs. OTR</li>
+	        <li>Stop-gap: Layer forward secret transport atop OpenPGP</li>
+	        <li>Long term: Collaborate with others to create new encryption protocol standards</li>
+	      </ul>
+	    </div>
+          </section>
+          <section>
+            <h2>Group problem</h2>
+            <blockquote style="margin-bottom:2em;">In practice, people work in groups, but public key cryptography doesn’t</blockquote>
+	    <ul>
+	      <li class="fragment" data-fragment-index="1">First we...ummm</li>
+	      <li class="fragment" data-fragment-index="2">Interesting work in secure file backup/sync/sharing (e.g. Wuala and SpiderOak)
+	      <li class="fragment" data-fragment-index="3">Proxy re-encryption</li>
+	      <li class="fragment" data-fragment-index="3">Ring signatures</li>
+	    </ul>
+          </section>
+          <section>
+            <h2>Resource problem</h2>
+            <blockquote style="margin-bottom:2em;">There are no open protocols to allow users to securely share a resource</blockquote>
+	    <ul>
+	      <li class="fragment" data-fragment-index="1">Yup, still got nothin' :/</li>
+	      <li class="fragment" data-fragment-index="2">"Read-write-web", meet ["Group problem" solution here]
+	      <li class="fragment" data-fragment-index="2">Again, possibilities from file sync (Lazy Revocation and Key Regression)
+	    </ul>
+          </section>
+          <section>
+            <h2>Availability problem</h2>
+            <blockquote style="margin-bottom:2em;">People want to smoothly switch devices, and restore their data if they lose a device, but this very difficult to do securely</blockquote>
+	    <li class="fragment">Soledad - Synchronization of Locally Encrypted Documents Among Devices<br /><em class="fragment">phew! we weren't out of ideas!</em></li>
+          </section>
+          <section>
+            <h2>Update problem</h2>
+            <blockquote style="margin-bottom:2em;">Almost universally, software updates are done in ways that invite attacks and device compromises</blockquote>
+	    <li class="fragment">Thandy (thanks, Tor!)</li>
+          </section>
+        </section>
+
+	<section>
+	  <h2>So, what have you got?</h2>
+	</section>
+
+        <section>
           <h2>Services</h2>
           <p>Encrypted Internet Proxy aka VPN</p>
           <p>Email</p>
