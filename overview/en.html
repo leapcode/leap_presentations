@@ -33,9 +33,11 @@
         </section>
 
         <section>
-          <li>Tools for secure network communications</li>
-          <li>Encryption should be simple to provide and use</li>
-          <li>Decentralization of service providers</li>
+	  <h2 style="margin-bottom:1em;">Encryption should be<br />simple to provide and easy to use</h2>
+	  <ul>
+            <li>Tools for secure network communications</li>
+            <li>Decentralization of service providers</li>
+	  </ul>
         </section>
 
         <section>
@@ -58,7 +60,7 @@
           </section>
           <section>
             <h2>leap-platform</h2>
-            <li>Puppet recipes for configuring the server</li>
+            <p>Puppet recipes for configuring the server</p>
             <pre><code data-trim contenteditable>
 # smtp TLS                                                                    
 postfix::config {                                                             
@@ -87,7 +89,7 @@ postfix::config {
           </section>
           <section>
             <h2>Provider Config</h2>
-            <li>Server Layout, IPs, contact details, etc</li>
+            <p>Server Layout, IPs, contact details, etc</p>
             <pre><code data-trim contenteditable>
 $ cat provider.json 
 //
@@ -119,7 +121,7 @@ $ cat nodes/web1.json
           </section>
           <section>
             <h2>Leap-cli</h2>
-            <li>Command Line Tools for Admins</li>
+            <p>Command Line Tools for Admins</p>
             <pre><code data-trim contenteditable>
 $ leap --yes deploy
  Deploying to these nodes: web1, vpn1, couch1
@@ -173,24 +175,26 @@ $ leap --yes deploy
         <section>
           <section>
             <h2>Provider Online</h2>
-            <li><a href="https://bitmask.net">Bitmask.net</a> - Reference Provider of LEAP </li>
-            <li>soon to be open for beta testers</li>
+            <p><a href="https://bitmask.net">Bitmask.net</a> - Reference Provider of LEAP </p>
+            <p>soon to be open for beta testers</p>
           </section>
 
           <section>
             <h2>Interested Providers</h2>
-            <li><a href="https://calyxinstitute.org">The Calyx Institute</a></li>
-            <!--<li><a href="https://genopoly.org">Genopoly.org</a></li>-->
-            <li><a href="https://riseup.net">The Riseup Collective</a></li>
-            <li>...</li>
+	    <ul>
+              <li><a href="https://calyxinstitute.org">The Calyx Institute</a></li>
+              <!--<li><a href="https://genopoly.org">Genopoly.org</a></li>-->
+              <li><a href="https://riseup.net">The Riseup Collective</a></li>
+              <li>...</li>
+	    </ul>
           </section>
         </section>
 
          <section>
            <h2>Etc</h2>
-           <li>Website: <a href="https://leap.se">https://leap.se</a></li>
-           <li>Github Mirror: <a href="https://github.com/leapcode">https://github.com/leapcode</a></li>
-           <li>Made with<a href="https://github.com/hakimel/reveal.js">reveal.js</a></li>
+           <p>Website: <a href="https://leap.se">https://leap.se</a></p>
+           <p>Github Mirror: <a href="https://github.com/leapcode">https://github.com/leapcode</a></li>
+           <p>Made with <a href="https://github.com/hakimel/reveal.js">reveal.js</a></li>
 </p>
          </section>
 
