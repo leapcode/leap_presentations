@@ -27,6 +27,6 @@ Presentations
 -------------
 
 * `overview`
-  basic presentation (wip), currently only in german
-  use `file:///home/varac/leap/git/leap_presentations/overview/de.html` url in browser to start
+  basic presentation (wip), currently german version is behind english
+  use `file:///home/varac/leap/git/leap_presentations/overview/en.html` url in browser to start
 
