@@ -1,229 +1,402 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <title>Leap Encryption Access Project</title>
-    <meta name="description" content="Tools für sichere Kommunikation im Netz">
-    <meta name="author" content="Varac">
-            
-    <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-                            
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-                            
-    <link rel="stylesheet" href="../tools/reveal.js/css/reveal.min.css"> 
-    <link rel="stylesheet" href="../tools/reveal.js/css/theme/default.css" id="theme">
-                            
-    <!-- For syntax highlighting -->
-    <link rel="stylesheet" href="../tools/reveal.js/lib/css/zenburn.css">
-                    
-    <!-- If the query includes 'print-pdf', use the PDF print sheet -->
-    <script>                
-            document.write( '<link rel="stylesheet" href="../tools/reveal.js/css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
-    </script>      
+<head>
+	<meta charset="utf-8">
+	<title>Leap Encryption Access Project</title>
+	<meta name="description" content="Tools für sichere Kommunikation im Netz">
+	<meta name="author" content="Varac">
+
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+	<link rel="stylesheet" href="../tools/reveal.js/css/reveal.min.css"> 
+	<link rel="stylesheet" href="../tools/reveal.js/css/theme/default.css" id="theme">
+
+	<!-- For syntax highlighting -->
+	<link rel="stylesheet" href="../tools/reveal.js/lib/css/zenburn.css">
+
+	<!-- If the query includes 'print-pdf', use the PDF print sheet -->
+	<script>                
+	document.write( '<link rel="stylesheet" href="../tools/reveal.js/css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+	</script>      
 
 
-  </head>
+</head>
 
-  <body>
-    <div class="reveal">
-      <div class="slides">
-        <section>
-          <h2>LEAP Encryption Access Project</h2>
-        </section>
+<body>
+	<div class="reveal">
+		<div class="slides">
+			<section>
+				<h2>LEAP Encryption Access Project</h2>
+			</section>
 
-        <section>
-          <li>Tools für sichere Kommunikation im Netz</li>
-          <li>Verschlüsselung soll einfach sein</li>
-          <li>Dezentralisierung von Service Providern</li>
-        </section>
+			<section>
+				<h2 style="margin-bottom:1em;">Verschlüsselung muss<br />einfach bereitzustellen sein und leicht benutzbar sein</h2>
+				<ul>
+					<li>Tools für sichere Kommunikation im Netz</li>
+					<li>Dezentralisierung von Service Providern</li>
+				</ul>
+			</section>
 
-        <section>
-          <section>
-            <h2>Für User</h2>
-            <li>Bitmask-Client für Mac OS, Linux, Android (Windows kommt)</li>
-          </section>
-          <section>
-            <img width="600" height="640" src="../img/de/bitmask-client-0.3.4.png" alt="Bitmask-Client">
-          </section>
-        </section>
+			<section>
+				<section>
+					<h2>Verschlüsselung ist nicht einfach</h2>
+					<h4 class="fragment">aber, der Ansatz war...</h4>
+					<h2 class="fragment" style="line-height:1.2em">Verschlüsselung muss<br /><em style="padding-right:0.2em;">einfach</em> bereitzustellen sein und <em style="padding-right:0.2em;">leicht</em> benutzbar sein</h2>
+					<h4 class="fragment">also...</h4>
+				</section>
+				<section>
+					<h2>lösen wir die harten Probleme</h2>
+					<div class="fragment">
+						<h3>die &#8220;großen 7&#8221;</h3>
+						<ol>
+							<li>Echtheit</li>
+							<li>Metadaten</li>
+							<li>Asynchronität</li>
+							<li>Gruppenproblem</li>
+							<li>Ressourcen</li>
+							<li>Verfügbarkeit</li>
+							<li>Aktualität</li>
+						</ol>
+					</div>
+				</section>
+				<section>
+					<h2>Echtheit</h2>
+					<blockquote style="margin-bottom:2em;">Eine Validierung von öffentlichen Schlüsseln ist umständlich für den Nutzer, ohne diese kann man aber kein Vertraulichkeit herstellen.</blockquote>
+					<li class="fragment"><span style="font-weight:bold;">Nicknym</span> - automatisches finden und validieren von öffentlichen Schlüsseln, transparent!</li>
+					<aside class="notes" data-markdown>
+						If proper key validation is a precondition for secure communication, but it is too difficult for most users, what hope do we have? We have developed a unique federated system called Nicknym that automatically discovers and validates public keys allowing the user to take advantage of public key cryptography without knowing anything about keys or signatures.
+					</aside>
+				</section><!-- Echtheit -->
+				<section>
+					<h2>Metadaten</h2>
+					<blockquote style="margin-bottom:2em;">Heutige Protokolle sind anfällig für Metadatenanalysen/-angriffe, obwohl Metadaten häufig interessanter sind als die Daten selbst.</blockquote>
+					<div class="fragment">
+						<ul>
+							<li>erzwungenes <strong>DNSSEC/DANE</strong></li>
+							<!-- downgrad-proof is hard to translate, seeAlso: http://crypto.stackexchange.com/questions/10493/why-is-tls-susceptible-to-protocol-downgrade-attacks -->
+						</ul>
+						<p style="margin-top:1.1em;">mit einem oder mehreren Optionen:</p>
+						<ul>
+							<li>Automatische <strong>Alias-Paare</strong></li>
+							<li><strong>Onion routing</strong> headers</li>
+							<li><strong>Dropbox</strong> eines Dritten</li>
+							<li><strong>Mixmaster</strong> mit Signaturen</li>
+						</ul>
+					</div>
+					<aside class="notes" data-markdown>
+						- DNSSEC:
 
-        <section>
-          <section>
-            <h2>Für Provider</h2>
-            <ul>
-              <li>Automatisierung Installation und Konfiguration der Dienste</li>
-              <li>Sichere Crypto-Voreinstellungen (TLS Parameter, etc)</li>
-            </ul>  
-          </section>
-          <section>
-            <h2>leap-platform</h2>
-            <li>Puppet-Rezepte für Konfiguration der Server</li>
-            <pre><code data-trim contenteditable>
-# smtp TLS                                                                    
-postfix::config {                                                             
-  'smtp_use_tls':        value  => 'yes';                                     
-  'smtp_tls_CApath':     value  => '/etc/ssl/certs/';                         
-  'smtp_tls_CAfile':     value  => $ca_path;                                  
-  'smtp_tls_cert_file':  value  => $cert_path;                                
-  'smtp_tls_key_file':   value  => $key_path;                                 
-  'smtp_tls_ask_ccert':  value  => 'yes';                                     
-  'smtp_tls_loglevel':   value  => '1';                                       
-  'smtp_tls_exclude_ciphers':                                                 
-    value => 'aNULL, MD5, DES';                                               
-  # upstream default is md5 (since 2.5 and older used it), we force sha1      
-  'smtp_tls_fingerprint_digest':                                              
-    value => 'sha1';                                                          
-  'smtp_tls_session_cache_database':                                          
-    value => 'btree:${queue_directory}/smtp_cache';                           
-  'smtp_tls_security_level':                                                  
-    value  => 'may';                                                          
-  # see issue #4011                                                           
-  'smtp_tls_protocols':                                                       
-    value => '!SSLv2, !SSLv3';                                                
-}                            
-            </code></pre>
+						Short term.  
+						Opportunistic TLS for email and chat among servers/providers  
+						Effective external observers, no protection of user from provider  
+						By itself, potential weaknesses to advanced attacks ( timing, traffic analysis )  
 
-          </section>
-          <section>
-            <h2>Provider Config</h2>
-            <li>Server Layout, IPs, Kontaktdaten, etc</li>
-            <pre><code data-trim contenteditable>
-$ cat provider.json 
-//
-// General service provider configuration.
-//
-{
-  "domain": "example.org",
-  "name": {
-    "en": "example"
-  },
-  "description": {
-    "en": "You really should change this text"
-  },
-  "contacts": {
-    "default": "admin@example.org"
-  },
-  "languages": ["en"],
-  "default_language": "en",
-  "enrollment_policy": "open"
-}
+						In the long term, we plan to adopt one of several different schemes for securely routing meta-data. These include:
 
-$ cat nodes/web1.json 
-{
-  "ip_address": "99.231.92.23",
-  "services": "webapp",
-  "tags": "production"
-}
-            </code></pre>
-          </section>
-          <section>
-            <h2>Leap-cli</h2>
-            <li>Kommandozeilen Tool für Admins</li>
-            <pre><code data-trim contenteditable>
-$ leap --yes deploy
- Deploying to these nodes: web1, vpn1, couch1
- = updated hiera/couch1.yaml
- = updated hiera/web1.yaml
- = checking node 
-   - [web1] ok
-   - [couch1] ok
-   - [vpn1] ok
- = synching configuration files
-   - hiera/web1.yaml -> web1:/etc/leap/hiera.yaml
-   - hiera/vpn1.yaml -> vpn1:/etc/leap/hiera.yaml
-   - hiera/couch1.yaml -> couch1:/etc/leap/hiera.yaml
-   - files/branding/tail.scss, files/branding/head.scss -> web1:/etc/leap
- = synching puppet manifests
-   - /home/demo/leap/demo/leap_platform/[bin,puppet] -> web1:/srv/leap
-   - /home/demo/leap/demo/leap_platform/[bin,puppet] -> vpn1:/srv/leap
-   - /home/demo/leap/demo/leap_platform/[bin,puppet] -> couch1:/srv/leap
-...
-            </code></pre>
-          </section>
-          <section>
-            <!--<h2>Leap-cli Screencasts</h2>-->
-            <!--<li><a href="http://shelr.tv/users/524415e69660807910000021">Shelr Screencasts</a> - Setup and Installation of a Provider</li>-->
-            <h2>Setting up a new Provider</h2>
-            <iframe border='0' height='684' id='shelr_record_52444667966080752b000024' scrolling='no' src='http://shelr.tv/records/52444667966080752b000024/embed' style='border: 0' width='885'></iframe>
-          </section>
-          <section>
-            <!--<h2>Leap-cli Screencasts</h2>-->
-            <!--<li><a href="http://shelr.tv/users/524415e69660807910000021">Shelr Screencasts</a> - Setup and Installation of a Provider</li>-->
-            <h2>Initializing and deploying nodes</h2>
-            <iframe border='0' height='684' id='shelr_record_52444667966080752b000024' scrolling='no' src='http://shelr.tv/records/52444667966080752b000024/embed' style='border: 0' width='885'></iframe>
-          </section>
+						- Auto alias pairs
+
+						auto negotiate aliases  
+						Advantage: backwards compatible  
+						Disadvantage: server stores list of aliases  
+
+						- Onion-routing-headers
+
+						A message from user A to user B is encoded so that the “to” routing information only contains the name of B’s server. When B’s server receives the message, it unwraps (unencrypts) a supplementary header that contains the actual user “B”. Like aliases, this provides no benefit if both users are on the same server. As an improvement, the message could be routed through intermediary servers.
+
+						- Third party dropbox
+
+						To exchange messages, user A and user B negotiate a unique “dropbox” URL for depositing messages, potentially using a third party. To send a message, user A would post the message to the “dropbox”. To receive a message, user B would regularly polls this URL to see if there are new messages.
+
+						- Mixmaster with signatures
+
+						Messages are bounced through a mixmaster-like set of anonymization relays and then finally delivered to the recipient’s server. The user’s client only displays the message if it is encrypted, has a valid signature, and the user has previously added the sender to a ‘allow list’ (perhaps automatically generated from the list of validated public keys).
+
+						For a great discussion comparing mix networks and onion routing, see Tom Ritter’s blog post on the topic.
+					</aside>
+				</section><!-- metadaten -->
+				<section>
+					<h2>Asynchronität</h2>
+					<blockquote style="margin-bottom:2em;">Um verschlüsselt zu kommunizieren, muss man sich heute entscheiden zwischen einer vorwärts gerichtete Geheimhaltung (forward secrecy) oder der Möglichkeit asynchron zu kommunizieren</blockquote>
+					<div class="fragment">
+						<ul>
+							<li>OpenPGP oder OTR</li>
+							<li>vorläufig: OpenPGP via TLS</li>
+							<li>langfristig: gemeinsame Entwicklung von neuen kryptografischen Protokollen</li>
+						</ul>
+					</div>
+					<aside class="notes" data-markdown>
+						With the pace of growth in digital storage and decryption, forward secrecy is increasingly important. Otherwise, any encrypted communication you engage in today is likely to become cleartext communication in the near future.
+
+						In the example of email and chat, we have OpenPGP with email and OTR with chat: the former provides asynchronous capabilities, and the latter forward secrecy, but neither one supports both abilities. We need both better security for email and the ability to send/receive offline chat messages.
+
+						In the short term, we are layering forward secret transport for email and chat relay on top of traditional object encryption (OpenPGP). This approach is identical to our stop-gap approach for the meta-data problem, with the one addition that relaying servers need the ability to not simply negotiate TLS transport, but to also negotiate forward secret ciphers and to prevent a cipher downgrade.
+
+						This approach is potentially effective against external network observers, but does not achieve forward secrecy from the service providers themselves.
+
+						In the long term, we plan to work with other groups to create new encryption protocol standards that can be both asynchronous and forward secret. :
+
+						Forward Secrecy Extensions for OpenPGP
+						Triple elliptical curve Diffie-Hellman handshake
+					</aside>
+				</section><!-- Asynchronität -->
+				<section>
+					<h2>Gruppenproblem</h2>
+					<blockquote style="margin-bottom:2em;">In realitas arbeiten Menschen in Gruppen gemeinsam, Public Key Verschlüsselung jedoch nicht.</blockquote>
+					<ul>
+						<li class="fragment" data-fragment-index="1">First we...ummm</li>
+						<li class="fragment" data-fragment-index="2">Interesting work in secure file backup/sync/sharing (e.g. Wuala and SpiderOak)
+							<li class="fragment" data-fragment-index="3">Proxy ent- und wiederverschlüsselung</li>
+							<li class="fragment" data-fragment-index="3">Ring-Signaturen</li>
+						</ul>
+						<aside class="notes" data-markdown>
+							We have a lot of ideas, but we don’t have any solutions yet to fix this. Essentially, the question is how to use existing public key primitives to create strong cryptographic groups, where membership and permissions are based on keys and not arbitrary server-maintained access control lists.
+
+							Most of the interesting work in this area has been done by companies working on secure file backup/sync/sharing, such as Wuala and Spideroak. Unfortunately, there are not yet any good open protocols or free software packages that can handle group cryptography.
+
+							### There is some free software work on some of interesting building blocks that could be useful in building group cryptography. For example: ###
+
+							- Proxy re-encryption:
+
+							See Wikipedia  
+							This allows the server to re-encrypt to new recipients without gaining access to the cleartext. The SELS mailing list manager (Secure Email List Services) uses OpenPGP to implement a clever scheme for proxy re-encryption.
+
+							- Ring signatures:
+
+							See Wikipedia  
+							This allows any member of a group to sign, without anyone knowing which member.
+						</aside>
+					</section><!-- Gruppenproblem -->
+					<section>
+						<h2>Ressourcenproblem</h2>
+						<blockquote style="margin-bottom:2em;">Es existieren keine freien Protokolle zum gemeinsamen und sicheren arbeiten an Ressourcen.</blockquote>
+						<ul>
+							<li class="fragment" data-fragment-index="1">Yap, wir haben nichts :/</li>
+							<li class="fragment" data-fragment-index="2">"Read-write-web", meet ["Group problem" solution here]
+								<li class="fragment" data-fragment-index="2">Auch hier: der meiste Fortschritt geschieht im Bereich Dateisynchronisierung
+								</ul>
+								<aside class="notes" data-markdown>
+									For example, when using secure chat or secure federated social networking, you need some way to link to external media, such as an image, video or file, that has the same security guarantees as the message itself. Embedding this type of resource in the messages themselves is prohibitively inefficient.
+
+									We don’t have a proposal for how to address this problem. There are a lot of great initiatives working under the banner of read-write-web, but these do not take encryption into account. In many ways, solutions to the resource problem are dependent on solutions to the the group problem.
+
+									As with the group problem, most of the progress in this area has been by people working on encrypted file sync (e.g. strategies like Lazy Revocation and Key Regression).
+								</aside>
+							</section><!-- Ressourcenproblem -->
+							<section>
+								<h2>Verfügbarkeit</h2>
+								<blockquote style="margin-bottom:2em;">Nutzer möchten ungehindert die Geräte wechseln und ihre Daten wiederherstellen können nach z. B. einem Geräteverlust. Dies auf sichere Art und Weise zu tun ist sehr schwierig.</blockquote>
+								<li class="fragment">Soledad - Synchronisierung von (lokal) verschlüsselten Daten zwischen verschiedenen Geräten<br /><em class="fragment">puuh! Da haben wir genug Ideen gehabt!</em></li>
+								<aside class="notes" data-markdown>
+									Users today demand the ability to access their data on multiple devices and to have piece of mind that there data will not be lost forever if they lose a device. In the free software world, only Firefox has addressed this problem adequately and in a secure way (with Firefox Sync).
+
+									At LEAP, we have worked to solve the availability problem with a system we call Soledad (for Synchronization of Locally Encrypted Documents Among Devices). Soledad gives the client application an encrypted, synchronized, searchable document database. All data is client encrypted, both when it is stored on the local device and synced with the cloud. As far as we know, there is nothing else like it, either in the free software or commercial world.
+								</aside>
+							</section><!-- Verfügbarkeit -->
+							<section>
+								<h2>Aktualität</h2>
+								<blockquote style="margin-bottom:2em;">Generell sind Software-Aktualisierungen anfällig für Angriffe.</blockquote>
+								<li class="fragment"><a href="http://google-opensource.blogspot.de/2009/03/thandy-secure-update-for-tor.html">Thandy</a> (thanks, Tor!)</li>
+								<aside class="notes" data-markdown>
+									The sad state of update security is especially troublesome because update attacks can now be purchased off the shelf by repressive regimes. The problem of software update is particular bad on desktop platforms. In the case of mobile and HTML5 apps, the vulnerabilities are not as dire, but the issues are also harder to fix.
+
+									To address the update problem, LEAP is adopting a unique update system called Thandy from the Tor project. Thandy is complex to manage, but is very effective at preventing known update attacks.
+
+									Thandy, and the related TUF, are designed to address the many security vulnerabilities in existing software update systems. In one example, other update systems suffer from an inability of the client to confirm that they have the most up-to-date copy, thus opening a huge vulnerability where the attacker simply waits for a security upgrade, prevents the upgrade, and launches an attack exploiting the vulnerability that should have just been fixed. Thandy/TUF provides a unique mechanism for distributing and verifying updates so that no client device will install the wrong update or miss an update without knowing it.
+
+									Related to the update problem is the backdoor problem: how do you know that an update does not have a backdoor added by the software developers themselves? Probably the best approach is that taken by Gitian, which provides a “deterministic build process to allow multiple builders to create identical binaries”. We hope to adopt Gitian in the future.
+								</aside>
+							</section><!-- Aktualität -->
+						</section><!-- crypto is hard -->
+
+						<section>
+							<section>
+								<h2>Für User</h2>
+								<li>Bitmask-Client für Mac OS, Linux, Android (Windows kommt)</li>
+							</section>
+							<section>
+								<img width="600" height="640" src="../img/de/bitmask-client-0.3.4.png" alt="Bitmask-Client">
+							</section>
+						</section>
+
+						<section>
+							<section>
+								<h2>Für Provider</h2>
+								<ul>
+									<li>Automatisierung Installation und Konfiguration der Dienste</li>
+									<li>Sichere Crypto-Voreinstellungen (TLS Parameter, etc)</li>
+								</ul>  
+							</section>
+							<section>
+								<h2>leap-platform</h2>
+								<li>Puppet-Rezepte für Konfiguration der Server</li>
+								<pre><code data-trim contenteditable>
+									# smtp TLS                                                                    
+									postfix::config {                                                             
+										'smtp_use_tls':        value  => 'yes';                                     
+										'smtp_tls_CApath':     value  => '/etc/ssl/certs/';                         
+										'smtp_tls_CAfile':     value  => $ca_path;                                  
+										'smtp_tls_cert_file':  value  => $cert_path;                                
+										'smtp_tls_key_file':   value  => $key_path;                                 
+										'smtp_tls_ask_ccert':  value  => 'yes';                                     
+										'smtp_tls_loglevel':   value  => '1';                                       
+										'smtp_tls_exclude_ciphers':                                                 
+										value => 'aNULL, MD5, DES';                                               
+										# upstream default is md5 (since 2.5 and older used it), we force sha1      
+										'smtp_tls_fingerprint_digest':                                              
+										value => 'sha1';                                                          
+										'smtp_tls_session_cache_database':                                          
+										value => 'btree:${queue_directory}/smtp_cache';                           
+										'smtp_tls_security_level':                                                  
+										value  => 'may';                                                          
+										# see issue #4011                                                           
+										'smtp_tls_protocols':                                                       
+										value => '!SSLv2, !SSLv3';                                                
+									}                            
+								</code></pre>
+
+							</section>
+							<section>
+								<h2>Provider Config</h2>
+								<li>Server Layout, IPs, Kontaktdaten, etc</li>
+								<pre><code data-trim contenteditable>
+									$ cat provider.json 
+									//
+									// General service provider configuration.
+									//
+									{
+										"domain": "example.org",
+										"name": {
+											"en": "example"
+										},
+										"description": {
+											"en": "You really should change this text"
+										},
+										"contacts": {
+											"default": "admin@example.org"
+										},
+										"languages": ["en"],
+										"default_language": "en",
+										"enrollment_policy": "open"
+									}
+
+									$ cat nodes/web1.json 
+									{
+										"ip_address": "99.231.92.23",
+										"services": "webapp",
+										"tags": "production"
+									}
+								</code></pre>
+							</section>
+							<section>
+								<h2>Leap-cli</h2>
+								<li>Kommandozeilen Tool für Admins</li>
+								<pre><code data-trim contenteditable>
+									$ leap --yes deploy
+									Deploying to these nodes: web1, vpn1, couch1
+									= updated hiera/couch1.yaml
+									= updated hiera/web1.yaml
+									= checking node 
+									- [web1] ok
+									- [couch1] ok
+									- [vpn1] ok
+									= synching configuration files
+									- hiera/web1.yaml -> web1:/etc/leap/hiera.yaml
+									- hiera/vpn1.yaml -> vpn1:/etc/leap/hiera.yaml
+									- hiera/couch1.yaml -> couch1:/etc/leap/hiera.yaml
+									- files/branding/tail.scss, files/branding/head.scss -> web1:/etc/leap
+									= synching puppet manifests
+									- /home/demo/leap/demo/leap_platform/[bin,puppet] -> web1:/srv/leap
+									- /home/demo/leap/demo/leap_platform/[bin,puppet] -> vpn1:/srv/leap
+									- /home/demo/leap/demo/leap_platform/[bin,puppet] -> couch1:/srv/leap
+									...
+								</code></pre>
+							</section>
+							<section>
+								<!--<h2>Leap-cli Screencasts</h2>-->
+								<!--<li><a href="http://shelr.tv/users/524415e69660807910000021">Shelr Screencasts</a> - Setup and Installation of a Provider</li>-->
+								<h2>Setting up a new Provider</h2>
+								<iframe border='0' height='684' id='shelr_record_52444667966080752b000024' scrolling='no' src='http://shelr.tv/records/52444667966080752b000024/embed' style='border: 0' width='885'></iframe>
+							</section>
+							<section>
+								<!--<h2>Leap-cli Screencasts</h2>-->
+								<!--<li><a href="http://shelr.tv/users/524415e69660807910000021">Shelr Screencasts</a> - Setup and Installation of a Provider</li>-->
+								<h2>Initializing and deploying nodes</h2>
+								<iframe border='0' height='684' id='shelr_record_52444667966080752b000024' scrolling='no' src='http://shelr.tv/records/52444667966080752b000024/embed' style='border: 0' width='885'></iframe>
+							</section>
 
 
-        </section>
+						</section>
 
-        <section>
-          <h2>Dienste</h2>
-          <p>Encrypted Internet Proxy aka VPN</p>
-          <p>Email</p>
-          <p>Chat (in Arbeit)</p>
-        </section>
-        
-        <section>
-          <h2>Dienste in Planung</h2>
-          <p>Client-encrypted Filehosting</p>
-          <p>Voip</p>
-          <p>Kollaborativer Texteditor</p>
-        </section>
+						<section>
+							<h2>Dienste</h2>
+							<p>Encrypted Internet Proxy aka VPN</p>
+							<p>Email</p>
+							<p>Chat (in Arbeit)</p>
+						</section>
 
-        <section>
-          <section>
-            <h2>Provider online</h2>
-            <li><a href="https://bitmask.net">Bitmask.net</a> - Referenz-Provider von Leap </li>
-            <li>demnächst offen für beta-Tester</li>
-          </section>
+						<section>
+							<h2>Dienste in Planung</h2>
+							<p>Client-encrypted Filehosting</p>
+							<p>Voip</p>
+							<p>Kollaborativer Texteditor</p>
+						</section>
 
-          <section>
-            <h2>interessierte Provider</h2>
-            <li><a href="https://calyxinstitute.org">The Calyx Institute</a></li>
-            <!--<li><a href="https://genopoly.org">Genopoly.org</a></li>-->
-            <li>...</li>
-          </section>
-        </section>
+						<section>
+							<section>
+								<h2>Provider online</h2>
+								<li><a href="https://bitmask.net">Bitmask.net</a> - Referenz-Provider von Leap </li>
+								<li>demnächst offen für beta-Tester</li>
+							</section>
 
-         <section>
-           <h2>Etc</h2>
-           <li>Website: <a href="https://leap.se">https://leap.se</a></li>
-           <li>Github Mirror: <a href="https://github.com/leapcode">https://github.com/leapcode</a></li>
-           <li>Gemacht mit <a href="https://github.com/hakimel/reveal.js">reveal.js</a></li>
-</p>
-         </section>
+							<section>
+								<h2>interessierte Provider</h2>
+								<li><a href="https://calyxinstitute.org">The Calyx Institute</a></li>
+								<!--<li><a href="https://genopoly.org">Genopoly.org</a></li>-->
+								<li>...</li>
+							</section>
+						</section>
 
-      </div>
+						<section>
+							<h2>Etc</h2>
+							<li>Website: <a href="https://leap.se">https://leap.se</a></li>
+							<li>Github Mirror: <a href="https://github.com/leapcode">https://github.com/leapcode</a></li>
+							<li>Gemacht mit <a href="https://github.com/hakimel/reveal.js">reveal.js</a></li>
+						</p>
+					</section>
 
-    </div>
+				</div>
 
-    <script src="../tools/reveal.js/lib/js/head.min.js"></script>
-    <script src="../tools/reveal.js/js/reveal.min.js"></script>
+			</div>
 
-    <script>
-      // Full list of configuration options avai  lable here:
-      // https://github.com/hakimel/reveal.js#configuration
-      Reveal.initialize({
-        controls: true,
-        progress: true,
-        history: true,
-        center: true,
+			<script src="../tools/reveal.js/lib/js/head.min.js"></script>
+			<script src="../tools/reveal.js/js/reveal.min.js"></script>
 
-        theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
-        transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+			<script>
+			// Full list of configuration options avai  lable here:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
 
-        // Optional libraries used to extend on reveal.js
-        dependencies: [
-        { src: '../tools/reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
-        { src: '../tools/reveal.js/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
-        { src: '../tools/reveal.js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
-        { src: '../tools/reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
-        { src: '../tools/reveal.js/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
-        { src: '../tools/reveal.js/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
-        ]
-      });
-    </script>
+				theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+				transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
 
-  </body>
-</html>
+				// Optional libraries used to extend on reveal.js
+				dependencies: [
+				{ src: '../tools/reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+				{ src: '../tools/reveal.js/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+				{ src: '../tools/reveal.js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+				{ src: '../tools/reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+				{ src: '../tools/reveal.js/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+				{ src: '../tools/reveal.js/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+				]
+			});
+			</script>
+
+		</body>
+		</html>
