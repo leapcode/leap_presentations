@@ -38,3 +38,12 @@ Presentations
 * `ta3m`
   draft of ta3m slides.
   Uses reveal-ck
+
+Reveal Options
+-------------------------
+
+* transition options: zoom, fast, fade, slide
+* keys:
+  * f: fullscreen mode
+  * o: overview mode
+  * esc: exit fullscreen or overview modes.
