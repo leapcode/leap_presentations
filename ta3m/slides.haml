@@ -1,0 +1,175 @@
+%section
+  %h1 LEAP Encryption Access Project
+  Elijah Sparrow &nbsp;&nbsp;&nbsp; Sean Leonard
+
+%section
+  %h1 What is the goal?
+  %h3 Communication that is
+  %h3
+    %ul
+      %li super easy
+      %li super secure
+  %p
+    For example: email, chat, voice, files, VPN.
+
+%section
+  %h1 What is the strategy?
+  %h3 Federated service providers using open protocols
+  %p (Not peer-to-peer, not centralized)
+
+
+%section
+  %h1 What is the strategy?
+  %p Bitmask: client application
+  %p LEAP Platform: service provider automation
+
+%section
+  %h1 Bitmask
+  %p With Bitmask App, you choose among any LEAP-powered service provider.
+  %p Currently, we support VPN and Email.
+
+%section
+  %h1 Bitmask
+  %h3
+    %ul
+      %li Auto-configuring
+      %li Single click VPN
+      %li Email via a local IMAP and SMTP services.
+
+%section
+  %h1 LEAP Platform
+  %p A few people with high skill but without unlimited time should be able to run a service provider.
+  %pre
+    %code.bash(data-trim)
+      :preserve
+        sudo gem install leap_cli
+        leap new example --domain example.org
+        cd example
+        leap add-user --self
+        leap node add blueberry services:openvpn ip_address:1.1.1.1
+        leap node add rasberry services:couchdb,webapp ip_address:2.2.2.2
+        leap node init
+        leap deploy
+
+%section
+  %h1 LEAP Platform
+  %ul
+    %li Everything is just a JSON configuration.
+    %li Can use git to maintain your provider.
+    %li Heavily customizable: override node behavior with tags & environments. Easy to fork.
+    %li Includes a testing and monitoring framework.
+    %li Includes a webapp with user management, help tickets and billing.
+
+%section
+  %h3 How to make something easy and secure?
+  %p Just create a better user interface!
+  %p Yes and no.
+
+%section
+  %h1 A better UI
+  %p image of android app on/off dashboard
+
+%section
+  %h1 A better UI
+  %p In many cases, it turns out that is not enough.
+  %p No point in polishing a turd.
+
+%section
+  %h1 Hard problems
+  %h3 in making security easy.
+  %ol
+    %li Data availability
+    %li Secure identity validation
+    %li Meta-data problem
+    %li Asynchronous forward secrecy problem
+  %p and many others...
+
+%section
+  %h1 Data availability
+  %ul
+    %li Securely back up data to the cloud
+    %li Available on all devices
+    %li Ensure it is also encrypted locally
+    %li Ensure access to data even when offline
+
+%section
+  %h1 Data availability
+  %p issue 1: can't use normal hashed passwords.
+  %p solution: use Secure Remote Password, two pass authentication scheme built on a zero knowledge proof such that the server never has access to the password.
+
+%section
+  %h1 Data availability
+  %p issue 2: when stored locally, we need the data in a database.
+  %p solution: stored local in sqlcipher (encrypted sqlite db)
+
+%section
+  %h1 Data availability
+  %p issue 3: don't trust the provider
+  %p
+    solution: client's individually encrypt each document record before synchronizing with distributed cloud database.
+    %a(href="https://leap.se/soledad") leap.se/soledad
+
+%section
+  %h1 Secure identity
+  %p Bedrock precondition for secure communication between to people: all other security properties flow from it.
+
+%section
+  %h1 Secure identity
+  %p Zooko's triangle: identifers may be globally unique, easy to remember, or decentralized: pick two.
+  %p The binding problem: how to strongly bind a human name to a long random cryptographic key.
+
+%section
+  %h1 Secure identity
+  %p Existing models don't work: X.509 or WoT.
+  %p New ideas: TOFU, DANE, CT.
+
+%section
+  %h1 Secure identity
+  %p What we are trying:
+  %ul
+    %li TOFU - trust on first use.
+    %li Provider endorsement - providers sign & revoke user public keys.
+    %li Network perspective - audit providers to keep them honest.
+  %P Gradual, backward compatible, ramp up.
+
+%section
+  %h1 Meta-data problem
+  %p Headers in email are not end-to-end encrypted.
+  %p Your service provider knows who you are corresponding with.
+  %ul
+    %li short term: use StartTLS with enforced certificate validation via DANE.
+    %li long term: direct delivery of email to recipient's provider using SMTP over Tor.
+
+%section
+  %h1 Synchronous forward secrecy
+  %p Why forward secrecy? needed to future-proof your security.
+  %p Uses temporary keys that are quickly thrown away.
+  %ul
+    %li short term: frequently rotating OpenPGP encryption sub-keys.
+    %li long term: Axolotl?
+
+%section
+  %h1 Links
+  %p
+    LEAP Encryption Access Project
+    %a(href="https://leap.se") https://leap.se
+  %p
+    Bitmask App
+    %a(href="https://bitmask.net") https://bitmask.net
+  %p
+    Demo
+    %a(href="https://demo.bitmask.net") https://demo.bitmask.net
+
+%section
+  %h1 Appendix
+
+%section
+  %h1 Why not p2p?
+  %ul
+    %li The "natural" network: many to many networks don't look like networks found in nature, which follow a power law ("scale free") distribution.
+    %li The Internet: internet infrastructure is actually very polycentric rather than decentralized (more akin to a tree than a spider's web).
+    %li Traffic Analysis: p2p message routing schemes are more vulnerable to traffic analysis.
+    %li Sybil Attacks: By their nature, peer-to-peer networks are highly vulnerable to Sybil attacks, where an attacker creates fake participants in order to reveal secrets or hijack network.
+    %li Mobile: Peer-to-peer networks are resource intensive, typically with every node in the network responsible for continually relaying traffic and keeping the network healthy.
+    %li Identifiers: There are no good schemes for secure p2p identity. Everyone uses fingerprints, but this makes user identifiers impossible to remember.
+    %li Data Availability: p2p has very poor data availability.
