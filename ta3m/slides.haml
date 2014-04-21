@@ -127,8 +127,8 @@
   %h1 Hard problems
   %h3 in making security easy.
   %ol
-    %li Data availability
-    %li Secure identity validation
+    %li Data availability problem
+    %li Secure identity validation problem
     %li Meta-data problem
     %li Asynchronous forward secrecy problem
   %p and many others...
@@ -195,7 +195,7 @@
 %section
   %h1 Secure identity
   %p What we are trying:
-  %ol
+  %ul.plain
     %li
       %b TOFU:
       Trust On First Use.
@@ -214,19 +214,32 @@
 
 %section
   %h1 Meta-data problem
-  %p Headers in email are not end-to-end encrypted.
-  %p Your service provider knows who you are corresponding with.
-  %ul
-    %li short term: use StartTLS with enforced certificate validation via DANE.
-    %li long term: direct delivery of email to recipient's provider using SMTP over Tor.
+  %p The problems:
+  %ul.plain
+    %li Headers in email are not end-to-end encrypted.
+    %li Network observers, and your service provider, knows who you are corresponding with.
+
+%section
+  %h1 Meta-data problem
+  %p Our solutions:
+  %ul.plain
+    %li
+      %b Short term:
+      use StartTLS with enforced certificate validation via DANE.
+    %li
+      %b Long term:
+      direct delivery of email to recipient's provider using SMTP over Tor.
 
 %section
   %h1 Synchronous forward secrecy
-  %p Why forward secrecy? needed to future-proof your security.
-  %p Uses temporary keys that are quickly thrown away.
-  %ul
-    %li short term: frequently rotating OpenPGP encryption sub-keys.
-    %li long term: Axolotl?
+  %p Why forward secrecy? Needed to future-proof your security.
+  %ul.plain
+    %li
+      %b Short term:
+      frequently rotating OpenPGP encryption sub-keys.
+    %li
+      %b Long term:
+      Axolotl? <a href="https://github.com/trevp/axolotl/wiki">github.com/trevp/axolotl/wiki</a>
 
 %section
   %h1 Links
