@@ -1,0 +1,192 @@
+:css
+  .reveal h1 {
+    margin-bottom: 30px;
+  }
+  .reveal h3 li {
+    margin-bottom: 10px;
+  }
+  .reveal h1, .reveal h3, .reveal p, .reveal li, .reveal .p {
+    text-shadow: 0px 0px 10px rgba(0, 0, 0, 1)
+  }
+  .left-column {
+    display: block;
+    width: 50%;
+    float: left;
+  }
+  .right-column {
+    width: 50%;
+    float: left;
+  }
+  .row {
+    display: table;
+    width: 100%;
+  }
+  .left {
+    text-align: left !important;
+  }
+  ul.plain {
+    list-style-type: none;
+  }
+  .reveal p, .reveal .p, ul.plain li {
+    margin-top: 15px;
+    margin-bottom: 15px;
+  }
+  .reveal li {
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+%section(data-background="images/kid-jumping.svg" data-background-size="50%")
+  %h1 LEAP Encryption Access Project
+  //.p.row
+  // Elijah Sparrow<br>elijah@leap.se<br>@ecsparrow
+
+%section
+  %h1 Bring back the 1990s!
+
+%section
+  %h1 What is Federation?
+  %h3
+    %ul
+      %li user &rarr; provider &rarr; provider &rarr; user
+      %li eg: SMTP, XMPP
+
+%section
+  %h1 Better federation
+  %h3
+    %ul
+      %li The users should be protected from the provider.
+      %li The provider should be protected from users.
+
+%section
+  %h1 Federation<br/>is not dead
+  %ul
+    %li Dissent - Provably anonymous group chat routing protocol - http://dedis.cs.yale.edu/dissent
+    %li CONIKS - Privacy-preserving system for automatic key discovery and validation (it is like Certificate Transparency for user keys, but without the need for a gossip protocol) - http://eprint.iacr.org/2014/1004.pdf
+
+%section
+  %h1 What does<br/>LEAP do?
+  %ol
+    %li <b>LEAP Platform:</b><br/>a toolkit to make it easy for you to run a service provider.
+    %li <b>New protocols:</b><br/>so that users don't need to trust the provider.
+    %li <b>Bitmask client:</b><br/>a client that works smoothly with any compatible provider.
+
+%section
+  %h1 LEAP Platform
+  %pre
+    %code.bash(data-trim)
+      :preserve
+        sudo gem install leap_cli
+        leap new example --domain example.org
+        cd example
+        leap add-user --self
+        leap cert ca
+        leap cert dh
+        leap cert csr
+        leap node add blueberry services:openvpn \
+             ip_address:1.1.1.1 openvpn.gateway_address:1.1.1.2
+        leap node add raspberry services:couchdb,webapp \
+             ip_address:1.1.1.3
+        leap init node
+        leap deploy
+
+%section
+  %h1 New Protocols
+  %ul
+    %li <b>Soledad:</b> searchable client-encrypted synchronized database.
+    %li <b>Bonafide:</b> secure user registration, authentication, password change, etc.
+    %li <b>Key management:</b> precise rules for OpenPGP best practices, automated.
+
+%section
+  %h1 Bitmask client
+  .left-column
+    %img{src: "images/bitmask-icon.png", style:"height:296px; width: 296px" }
+  .right-column
+    %img{src: "images/bitmask-main-window.jpg" }
+
+%section
+  %h3 Example service: Email
+  %p We want all the features
+  %ul
+    %li Easy to use.
+    %li Backwards compatible with email and current OpenPGP usage.
+    %li End-to-end encryption.
+    %li Service provider has no access to user data.
+    %li Automatic key discovery and validation.
+    %li Strong protection for metadata, when supported.
+    %li Cloud synchronized for high availability on multiple devices.
+    %li No cleartext is ever written to disk.
+    %li Fully searchable email.
+    %li Work while offline, sync when network is available.
+
+%section
+  .left
+    %h3 How?
+    %p
+      %b Soledad:
+      client-encrypted storage of content and metadata, searchable, offline support, backed up, sync'ed to multiple devices.
+    %p 
+      %b Invisible keys:
+      let the robot manage keys; simple federated provider validation to start; forward compatibility with better validation as new protocols come online. 
+    %p
+      %b Tor:
+      relay SMTP over hidden service when available (not in stable platform yet, but working live for two email providers).
+    %p
+      %b Secure Remote Password:
+      A login/password user experience, but the provider never has access to the password cleartext.
+
+%section
+  .left
+    %h3 Infrastructure approaches:
+    %ul
+      %li LEAP - SMTP & OpenPGP
+      %li DIME - New protocols
+      %li PPE - SMTP & S/MIME
+    %p
+    %h3 Client approaches:
+    %ul
+      %li Whiteout - Javascript client
+      %li Mailpile - Python client
+      %li e2e - Browser extension, from Google and Yahoo (maybe some infrastructure key validation in the future)
+      %li Mailvelope - Browser extension
+
+%section(data-background="images/pixelated-white-small.svg" data-background-size="50%")
+
+%section
+  %h1 Our goals:
+  %ul
+    %li increase the cost of dragnet surveillance
+    %li mass adoption
+
+%section
+  %h1 Web Interface
+  %ul
+    %li Potentially hosted by third party.
+    %li Think "Bitmask client" but hosted in the cloud.
+    %li Good looking.
+    %li Search and tagging.
+    %li Keys on the server, no browser crypto.
+
+%section(data-background="images/webmail.png" data-background-size="100%")
+
+%section
+  .left
+    %ul.plain
+      %li
+        LEAP Encryption Access Project @leapcode
+        %a(href="https://leap.se") https://leap.se
+      %li
+        Bitmask App @bitmasknet
+        %a(href="https://bitmask.net") https://bitmask.net
+      %li
+        elijah@leap.se @ecsparrow<br/>
+        06A2 B8EE B5A4 E27D 3F57 14AC 544E E176 B3AE 7759
+    %p &nbsp;
+    %p &nbsp;
+    %ul.plain
+      %li
+        Pixelated Project @pixelatedteam https://pixelated-project.org
+      %li
+        team@pixelated-project.org<br/>
+        504A 14EA 39DE 1800 B676 9619 FF0E A8AE D649 7991
+
+
