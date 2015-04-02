@@ -1,0 +1,114 @@
+:css
+  .reveal h1 {
+    margin-bottom: 30px;
+  }
+  .reveal h3 li {
+    margin-bottom: 10px;
+  }
+  .reveal h1, .reveal h3, .reveal p, .reveal li, .reveal .p {
+    text-shadow: 0px 0px 10px rgba(0, 0, 0, 1)
+  }
+  .left-column {
+    display: block;
+    width: 50%;
+    float: left;
+  }
+  .right-column {
+    width: 50%;
+    float: left;
+  }
+  .row {
+    display: table;
+    width: 100%;
+  }
+  .left {
+    text-align: left !important;
+  }
+  ul.plain {
+    list-style-type: none;
+  }
+  .reveal p, .reveal .p, ul.plain li {
+    margin-top: 15px;
+    margin-bottom: 15px;
+  }
+  .reveal li {
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+
+%section(data-background="images/kid-jumping.svg" data-background-size="50%")
+  %h1 LEAP Encryption Access Project
+  .p.row
+    Mcnair Scott<br>mcnair@leap.se
+
+%section
+  %h1 Two goals
+  %p Make encrypted communication...
+  %ul
+    %li Easy to provide
+    %li Easy to use
+
+%section
+  %h1 Two goals
+  %p Make encrypted communication...
+  %ul
+    %li <b>Easy to provide</b> &rarr; LEAP platform for service providers.
+    %li <b>Easy to use</b> &rarr; Bitmask client for end-users.
+
+%section
+  %h1 Services
+  %ul
+    %li
+      %h3 VPN
+      %p Autoconfiguring, advanced protection against leaking any traffic in the clear.
+    %li
+      %h3 Email
+      %p Automatic end-to-end email encryption, using OpenPGP.
+
+%section
+  %h1 Bitmask client
+  %p Linux and Android (Mac and Windows versions coming in 2015).
+  .left-column
+    %img{src: "images/bitmask-icon.png", style:"height:296px; width: 296px" }
+  .right-column
+    %img{src: "images/bitmask-main-window.jpg" }
+
+%section
+  %h3 Step 1 &mdash; Install
+  %img{src: "images/download.png" }
+
+%section
+  %h3 Step 2 &mdash; Select Provider
+  .left-column
+    %img{src: "images/select-provider.png" }
+  .right-column
+    %img{src: "images/register.png" }
+
+%section
+  %h3 Step 3 &mdash; Connect
+  %img{src: "images/vpn.png" }
+
+%section
+  %h3 Step 4 &mdash; Open Email UI
+  %img{src: "images/webmail.png"}
+  %p (or point mail client at imap://localhost:1984)
+
+%section
+  .left
+    %ul.plain
+      %li
+        LEAP Encryption Access Project @leapcode
+        %a(href="https://leap.se") https://leap.se
+      %li
+        Bitmask App @bitmasknet
+        %a(href="https://bitmask.net") https://bitmask.net
+    %p &nbsp;
+    %p &nbsp;
+    %ul.plain
+      %li
+        Pixelated Project @pixelatedteam https://pixelated-project.org
+      %li
+        team@pixelated-project.org<br/>
+        504A 14EA 39DE 1800 B676 9619 FF0E A8AE D649 7991
+
+
