@@ -37,8 +37,6 @@
   }
 %section(data-background="images/kid-jumping.svg" data-background-size="50%")
   %h1 LEAP Encryption Access Project
-  //.p.row
-  // Elijah Sparrow<br>elijah@leap.se<br>@ecsparrow
 
 %section
   %h1 Bring back the 1990s!
@@ -56,12 +54,6 @@
     %ul
       %li The users should be protected from the provider.
       %li The provider should be protected from users.
-
-%section
-  %h1 Federation<br/>is not dead
-  %ul
-    %li Dissent - Provably anonymous group chat routing protocol - http://dedis.cs.yale.edu/dissent
-    %li CONIKS - Privacy-preserving system for automatic key discovery and validation (it is like Certificate Transparency for user keys, but without the need for a gossip protocol) - http://eprint.iacr.org/2014/1004.pdf
 
 %section
   %h1 What does<br/>LEAP do?
@@ -104,8 +96,18 @@
     %img{src: "images/bitmask-main-window.jpg" }
 
 %section
-  %h3 Example service: Email
-  %p We want all the features
+  %h3 Current Services: VPN
+  %ul
+    %li Easy to use.
+    %li Route all your internet trafic through an encrypted channel.
+    %li Prevent eavesdropping (thiefs in the public network, police, ...).
+    %li Circunvent internet censorship.
+    %li Prevent leaks (DNS, IPv6, ...).
+
+%section
+  %h3 Current Services: email
+  %p
+    %em Work in progress
   %ul
     %li Easy to use.
     %li Backwards compatible with email and current OpenPGP usage.
@@ -117,37 +119,6 @@
     %li No cleartext is ever written to disk.
     %li Fully searchable email.
     %li Work while offline, sync when network is available.
-
-%section
-  .left
-    %h3 How?
-    %p
-      %b Soledad:
-      client-encrypted storage of content and metadata, searchable, offline support, backed up, sync'ed to multiple devices.
-    %p 
-      %b Invisible keys:
-      let the robot manage keys; simple federated provider validation to start; forward compatibility with better validation as new protocols come online. 
-    %p
-      %b Tor:
-      relay SMTP over hidden service when available (not in stable platform yet, but working live for two email providers).
-    %p
-      %b Secure Remote Password:
-      A login/password user experience, but the provider never has access to the password cleartext.
-
-%section
-  .left
-    %h3 Infrastructure approaches:
-    %ul
-      %li LEAP - SMTP & OpenPGP
-      %li DIME - New protocols
-      %li PPE - SMTP & S/MIME
-    %p
-    %h3 Client approaches:
-    %ul
-      %li Whiteout - Javascript client
-      %li Mailpile - Python client
-      %li e2e - Browser extension, from Google and Yahoo (maybe some infrastructure key validation in the future)
-      %li Mailvelope - Browser extension
 
 %section(data-background="images/pixelated-white-small.svg" data-background-size="50%")
 
