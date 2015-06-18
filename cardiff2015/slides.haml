@@ -112,14 +112,14 @@
   %ul
     %li Easy to use.
     %li End-to-end encryption.
+    %li Automatic key discovery and validation.
     %li Backwards compatible with email and current OpenPGP usage.
     %li Service provider has no access to user data.
-    %li Automatic key discovery and validation.
     %li Strong protection for metadata, when supported.
     %li Cloud synchronized for high availability on multiple devices.
-    %li No cleartext is ever written to disk.
 
-%section(data-background="./images/pix-logo-with-text.jpg" data-background-size="50%")
+%section(data-background="./images/pixelated-white-small.svg" data-background-size="50%")
+  
 
 %section
   %h1 Our goals:
@@ -144,30 +144,28 @@
 %section
   %h1 Activist Setup
   %ul
-    %li Private Keys on local device
     %li Useragent needs to get installed locally
+    %li Private Keys on local device
 
 %section
   %h1 Organisation Setup
   %ul
-    %li Private Keys on the server
+    %li Multi-User encrypted Webmail
     %li No Installation, access via browser
+    %li Private Keys on the server
     %li Activist Setup possible on individual choice
 
 %section(data-background="./images/pix-architecture2.png" data-background-size="75%")
 
+%section(data-background="./images/pix-architecture.png" data-background-size="50%")
 
 %section
   %h1 Metadata
   %ul
     %li Simple Mail Transfer Protocol from 1982 (!)
     %li Email exposes lots of metadata (Date:, From:, To:, Subject:, Useragent:)
-
-%section(data-background="./images/metadata.jpg" data-background-size="50%")
-
-%section(data-background="./images/metadata2.jpg" data-background-size="50%")
-
-%section(data-background="./images/metadata3.jpg" data-background-size="50%")
+    %li "Memory Hole" proposal to hide metadata in gpg encrypted mail
+    %li Enforce Transport Security whenever possible.
 
 %section
   %ul
@@ -186,7 +184,8 @@
     %p &nbsp;
     %ul.plain
       %li
-        Pixelated Project @pixelatedteam https://pixelated-project.org
+        Pixelated Project @pixelatedteam
+        %a(href="https://pixelated-project.org") https://pixelated-project.org
       %li
         team@pixelated-project.org<br/>
         504A 14EA 39DE 1800 B676 9619 FF0E A8AE D649 7991
