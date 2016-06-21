@@ -1,0 +1,215 @@
+<style>
+  .reveal h1 {
+    margin-bottom: 30px;
+  }
+  .reveal h3 li {
+    margin-bottom: 10px;
+  }
+  .reveal h1, .reveal h3, .reveal p, .reveal li, .reveal .p {
+    text-shadow: 0px 0px 10px rgba(0, 0, 0, 1)
+  }
+  .left-column {
+    display: block;
+    width: 50%;
+    float: left;
+  }
+  .right-column {
+    width: 50%;
+    float: left;
+  }
+  .row {
+    display: table;
+    width: 100%;
+  }
+  .left {
+    text-align: left !important;
+  }
+  ul.plain {
+    list-style-type: none;
+  }
+  .reveal p, .reveal .p, ul.plain li {
+    margin-top: 15px;
+    margin-bottom: 15px;
+  }
+  .reveal li {
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+</style>
+<section data-background-size="80%" data-background="images/leap-pixelated.svg">
+  <div class="left-column">
+    <h3>LEAP Encryption Access Project</h3>
+  </div>
+</section>
+<section>
+  <h1>Bring back the 1990s!</h1>
+</section>
+<section>
+  <h1>What is Federation?</h1>
+  <h3>
+    <ul>
+      <li>user → provider → provider → user</li>
+      <li>eg: SMTP, XMPP</li>
+    </ul>
+  </h3>
+</section>
+<section>
+  <h1>Better federation</h1>
+  <h3>
+    <ul>
+      <li>The users should be protected from the provider.</li>
+      <li>The provider should be protected from users.</li>
+    </ul>
+  </h3>
+</section>
+<section>
+  <h1>What does<br>LEAP do?</h1>
+  <ol>
+    <li>
+<b>LEAP Platform:</b><br>a toolkit to make it easy for you to run a service provider.</li>
+    <li>
+<b>New protocols:</b><br>so that users don't need to trust the provider.</li>
+    <li>
+<b>Bitmask client:</b><br>a client that works smoothly with any compatible provider.</li>
+  </ol>
+</section>
+<section>
+  <h1>LEAP Platform</h1>
+  <pre><code class="bash" data-trim>sudo gem install leap_cli
+leap new example --domain example.org
+cd example
+leap add-user --self
+leap cert ca
+leap cert dh
+leap cert csr
+leap node add blueberry services:openvpn \
+     ip_address:1.1.1.1 openvpn.gateway_address:1.1.1.2
+leap node add raspberry services:couchdb,webapp \
+     ip_address:1.1.1.3
+leap init node
+leap deploy
+</code></pre>
+</section>
+<section>
+  <h1>New Protocols</h1>
+  <ul>
+    <li>
+<b>Soledad:</b> searchable client-encrypted synchronized database.</li>
+    <li>
+<b>Bonafide:</b> secure user registration, authentication, password change, etc.</li>
+    <li>
+<b>Key management:</b> precise rules for OpenPGP best practices, automated.</li>
+  </ul>
+</section>
+<section>
+  <h1>Bitmask client</h1>
+  <div class="left-column">
+    <img src="images/bitmask-icon.png" style="height:296px; width: 296px">
+  </div>
+  <div class="right-column">
+    <img src="images/bitmask-main-window.jpg">
+  </div>
+</section>
+<section>
+  <h3>Current Services: VPN</h3>
+  <ul>
+    <li>Easy to use.</li>
+    <li>Route all your internet trafic through an encrypted channel.</li>
+    <li>Prevent eavesdropping (thiefs in the public network, police, ...).</li>
+    <li>Circunvent internet censorship.</li>
+    <li>Prevent leaks (DNS, IPv6, ...).</li>
+  </ul>
+</section>
+<section>
+  <h3>Current Services: email</h3>
+  <p>
+    <em>Work in progress</em>
+  </p>
+  <ul>
+    <li>Easy to use.</li>
+    <li>End-to-end encryption.</li>
+    <li>Automatic key discovery and validation.</li>
+    <li>Backwards compatible with email and current OpenPGP usage.</li>
+    <li>Service provider has no access to user data.</li>
+    <li>Strong protection for metadata, when supported.</li>
+    <li>Cloud synchronized for high availability on multiple devices.</li>
+  </ul>
+</section>
+<section data-background-size="50%" data-background="./images/pixelated-white-small.svg"></section>
+<section>
+  <h1>Our goals:</h1>
+  <ul>
+    <li>Mass adoption</li>
+    <li>Increase the cost of dragnet surveillance</li>
+  </ul>
+</section>
+<section data-background-size="50%" data-background="./images/one-encr-mail.jpg"></section>
+<section data-background-size="50%" data-background="./images/many-encr-mails.jpg"></section>
+<section>
+  <h1>Pixelated Useragent</h1>
+  <ul>
+    <li>Bitmask client and Email Client combined.</li>
+    <li>Modern, good looking UI.</li>
+    <li>Integrated search, search index encrypted</li>
+    <li>Tagging</li>
+  </ul>
+</section>
+<section data-background-size="75%" data-background="./images/pix-useragent.png"></section>
+<section>
+  <h1>Activist Setup</h1>
+  <ul>
+    <li>Useragent needs to get installed locally</li>
+    <li>Private Keys on local device</li>
+  </ul>
+</section>
+<section>
+  <h1>Organisation Setup</h1>
+  <ul>
+    <li>Multi-User encrypted Webmail</li>
+    <li>No Installation, access via browser</li>
+    <li>Private Keys on the server</li>
+    <li>Activist Setup possible on individual choice</li>
+  </ul>
+</section>
+<section data-background-size="75%" data-background="./images/pix-architecture2.png"></section>
+<section data-background-size="50%" data-background="./images/pix-architecture.png"></section>
+<section>
+  <h1>Metadata</h1>
+  <ul>
+    <li>Simple Mail Transfer Protocol from 1982 (!)</li>
+    <li>Email exposes lots of metadata (Date:, From:, To:, Subject:, Useragent:)</li>
+    <li>"Memory Hole" proposal to hide metadata in gpg encrypted mail</li>
+    <li>Enforce Transport Security whenever possible.</li>
+  </ul>
+</section>
+<section>
+  <ul>
+    <li>
+  </ul>
+</section>
+<section>
+  <div class="left">
+    <ul class="plain">
+      <li>
+        LEAP Encryption Access Project <a href="https://github.com/leapcode" class="user-mention">@leapcode</a>
+        <a href="https://leap.se">https://leap.se</a>
+      </li>
+      <li>
+        Bitmask App <a href="https://github.com/bitmasknet" class="user-mention">@bitmasknet</a>
+        <a href="https://bitmask.net">https://bitmask.net</a>
+      </li>
+    </ul>
+    <p> </p>
+    <p> </p>
+    <ul class="plain">
+      <li>
+        Pixelated Project <a href="https://github.com/pixelatedteam" class="user-mention">@pixelatedteam</a>
+        <a href="https://pixelated-project.org">https://pixelated-project.org</a>
+      </li>
+      <li>
+        team@pixelated-project.org<br>
+        504A 14EA 39DE 1800 B676 9619 FF0E A8AE D649 7991
+      </li>
+    </ul>
+  </div>
+</section>
