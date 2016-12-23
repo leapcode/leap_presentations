@@ -6,6 +6,7 @@
 # Images
 
 - for Bitmask, Pixelated
+- where's the Bitmask gif elijah did a while ago ?
 
 # Prepare quick bitmask demo
 
@@ -24,7 +25,7 @@
 
 # Issues
 
-- `leap new` should not checkout master, but latest stable tag
+- keylookup for @leap.se keys doesn't work
 
 ## Pixelated
 

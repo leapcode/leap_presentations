@@ -1,6 +1,6 @@
 ## While you wait
 
-If you want to use vagrant during this session
+If you want to use `Vagrant` during this session
 please start right away with downloading the
 `LEAP/jessie` vagrantbox:
 
@@ -66,7 +66,7 @@ We'll briefly explain both projects later
 
 ## Bitmask Client
 
-TODO: image
+<img src="./images/bitmask-dev-201612.png" width="50%" height="50%">
 
 - Formerly Python/Twisted
 - Currently rewritten with Python/Javascript
@@ -144,7 +144,7 @@ leap 1.9, ruby 2.3.1
 
 ---
 
-# Create a provider instance
+# Prepare provider config
 
 Use `example.org` for testing, or pick your own domain.
 
@@ -153,8 +153,25 @@ $ mkdir -p ~/leap/example.org
 $ cd ~/leap/example.org
 ```
 
+Leap Platform Build Status: [![Build Status](https://0xacab.org/leap/platform/badges/master/build.svg)](https://0xacab.org/leap/platform/commits/master)
+If the last build failed, we need to checkout the last stable version of the leap_platform:
+
+```
+git clone https://0xacab.org/leap/platform.git ../leap_platform
+git checkout -b 0.9.0 0.9.0
+```
+
+```notes
+
+```
+
+---
+
+# Create provider config
+
 ```
 $ leap new .
+
 The primary domain of the provider: |example.org|
 The name of the provider: |Example|
 File path of the leap_platform directory: |/home/varac/leap_platform|
@@ -256,7 +273,7 @@ $ leap deploy wildebeest
 
 ---
 
-# Test that things worked correctly
+# Test if things work correctly
 
 ```
 $ leap test
@@ -266,15 +283,36 @@ $ leap test
 
 # Setup DNS
 
+We are using a fake domain here, so we need to override our DNS resolution.
+
+```
+$ leap compile hosts
+```
+
+You need to edit your `hosts` file with admin privileges and add the output of above command to it.
+
+* Linux: `sudo editor /etc/hosts`
+* MacOS: `sudo nano /private/etc/hosts`
+
+see [Quick start tutorial/Setup DNS](https://leap.se/en/docs/platform/tutorials/quick-start#setup-dns) for details.
 
 ---
 
-# Start bitmask
+# Time to start Bitmask and your favorite mail client
 
+- Install instructions: https://bitmask.net/en/install
+- Debian/Ubuntu only at the moment, sorry
+
+```notes
+Show:
+
+- Mail to myself
+- Mail to/from other workshop participants
+- Mail from outside (ssh cat)
 ...
+```
 
 ---
-
 
 # Install Pixelated
 
@@ -298,14 +336,6 @@ $ leap test wildebeest
 - Register a user at https://example.org
 - Login at https://example.org:8080/
 
-```
-Show: 
-
-- Mail to myself
-- Mail to/from other workshop participants
-- Mail from outside (ssh cat)
-...
-```
 
 ---
 
@@ -318,7 +348,10 @@ Show:
 
 # Thanks!
 
-- https://leap.se
+- LEAP Encryption Access Project: [https://leap.se](https://leap.se)
+- Bitmask Application: [https://bitmask.net](https://bitmask.net)
+- Github: [https://github.com/leapcode](https://github.com/leapcode)
+- Twitter: [https://twitter.com/leapcode](https://twitter.com/leapcode)
 - https://pixelated-project.org/
 
 Please consider to contribute - any help with QA or other is appreciated !
