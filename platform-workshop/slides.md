@@ -95,6 +95,7 @@ Requires Vagrant and Virtualbox or other hypervisor | Physical or paravirtualize
 
 # Tutorials
 
+
 ## Vagrant
 
 - https://leap.se/en/docs/platform/tutorials/vagrant
@@ -107,7 +108,7 @@ Requires Vagrant and Virtualbox or other hypervisor | Physical or paravirtualize
 
 ---
 
-# Install pre-requisites
+# Install pre&shy;requisites
 
 - Install leap-cli on your workstation/laptop, NOT on the server !
 

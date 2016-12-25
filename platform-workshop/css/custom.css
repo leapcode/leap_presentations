@@ -1,0 +1,13 @@
+.reveal h2 {
+	font-size:2.07em;
+	hyphens: auto;
+}
+
+.reveal h1 {
+	font-size: 2.55em;
+}
+
+.reveal code {
+	font-size:1.5em;
+	line-height:1.3em;
+}
