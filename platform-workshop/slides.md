@@ -88,7 +88,7 @@ We'll briefly explain both projects later
 
 Vagrant         | Remote Server
 :-------------: | :-------------:
-Locally on your Laptop, for testing | Out there, for testing or real
+Locally on your laptop, for testing | Out there, for testing or real
 Requires Vagrant and Virtualbox or other hypervisor | Physical or paravirtualized Server (KVM, Xen, OpenStack, Amazon, but not VirtualBox or OpenVZ)
 
 ---
@@ -114,7 +114,7 @@ Requires Vagrant and Virtualbox or other hypervisor | Physical or paravirtualize
 ## Debian & Ubuntu
 
 ```
-$ sudo apt-get install git ruby ruby-dev rsync openssh-client openssl rake make bzip2
+$ sudo apt install git ruby ruby-dev rsync openssh-client openssl rake make bzip2
 ```
 
 ## Mac OS
@@ -137,7 +137,7 @@ $ ruby-install ruby
 $ sudo gem install leap_cli
 
 $ leap --version
-leap 1.9, ruby 2.3.1
+leap 1.9, ruby 2.3.3
 ...
 
 ```
@@ -208,7 +208,7 @@ $ leap cert csr
 
 ---
 
-# Option A: Add and existing remote server
+# Option A: Add an existing remote server
 
 
 ```
