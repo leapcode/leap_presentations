@@ -20,6 +20,7 @@ Denis (Pixelated), Kwadronaut (LEAP),  Varac (Pixelated, LEAP),   Zara (Pixelate
 
 ```note
 We'll briefly explain both projects later
+
 ```
 
 ---
@@ -45,7 +46,9 @@ We'll briefly explain both projects later
 ```notes
 - We cannot help you / debug your vagrant issues here
 - Otherwise, please pair with your neighbour
-
+- When you are stuck, pls tell us - if it can be fixed easily, great. If not, pls just continue to watch the demo,
+  we can help you out later.
+- Who wants to use vagrant/a remote sever ?
 ```
 
 ---
@@ -89,7 +92,7 @@ We'll briefly explain both projects later
 Vagrant         | Remote Server
 :-------------: | :-------------:
 Locally on your laptop, for testing | Out there, for testing or real
-Requires Vagrant and Virtualbox or other hypervisor | Physical or paravirtualized Server (KVM, Xen, OpenStack, Amazon, but not VirtualBox or OpenVZ)
+Requires Vagrant >= 1.5 and Virtualbox or other hypervisor | Physical or paravirtualized Server (KVM, Xen, OpenStack, Amazon, but not VirtualBox or OpenVZ)
 
 ---
 
@@ -115,7 +118,8 @@ Requires Vagrant and Virtualbox or other hypervisor | Physical or paravirtualize
 ## Debian & Ubuntu
 
 ```
-$ sudo apt install git ruby ruby-dev rsync openssh-client openssl rake make bzip2
+$ sudo apt install git ruby ruby-dev rsync \
+    openssh-client openssl rake make bzip2
 ```
 
 ## Mac OS
@@ -154,11 +158,16 @@ $ mkdir -p ~/leap/example.org
 $ cd ~/leap/example.org
 ```
 
+***
+
+# Checkout stable version of platform
+
 Leap Platform Build Status: [![Build Status](https://0xacab.org/leap/platform/badges/master/build.svg)](https://0xacab.org/leap/platform/commits/master)
 If the last build failed, we need to checkout the last stable version of the leap_platform:
 
 ```
-git clone https://0xacab.org/leap/platform.git ../leap_platform
+git clone https://0xacab.org/leap/platform.git \
+  ../leap_platform
 git checkout -b 0.9.0 0.9.0
 ```
 
@@ -209,11 +218,27 @@ $ leap cert csr
 
 ---
 
+# Add Pixelated webmail
+
+- see https://github.com/pixelated/puppet-pixelated for details
+
+```
+$ mkdir -p files/puppet/modules
+$ git clone https://github.com/pixelated/puppet-pixelated.git \
+    files/puppet/modules/pixelated
+
+$ mkdir -p files/puppet/modules/custom/manifests
+$ echo 'class custom { include ::pixelated }' > files/puppet/modules/custom/manifests/init.pp
+```
+
+---
+
 # Option A: Add an existing remote server
 
 
 ```
-$ leap node add wildebeest ip_address:0.1.2.3 services:webapp,couchdb,soledad,mx
+$ leap node add wildebeest ip_address:0.1.2.3 \
+  services:webapp,couchdb,soledad,mx
 ```
 
 ```notes
@@ -268,8 +293,37 @@ $ leap deploy wildebeest
 ```
 
 ```notes
-- Takes ~ 15 min to finish
-- Time for a little platform presentation
+- Takes ~20 min to finish
+- We'll setup DNS meanwhile
+```
+
+---
+
+# Setup DNS
+
+We are using a fake domain here, so we need to override our DNS resolution.
+
+- Open another terminal and:
+```
+cd ~/leap/example.org
+leap compile hosts
+```
+
+You need to edit your `hosts` file with admin privileges and add the output of above command to it.
+
+* Linux: `sudo editor /etc/hosts`
+* MacOS: `sudo nano /private/etc/hosts`
+
+see [Quick start tutorial/Setup DNS](https://leap.se/en/docs/platform/tutorials/quick-start#setup-dns) for details.
+
+
+---
+
+# Questions so far ?
+
+```notes
+- Time for Q&A, explain more about platform
+- We'll wait until deploy finishes
 ```
 
 ---
@@ -280,29 +334,12 @@ $ leap deploy wildebeest
 $ leap test
 ```
 
----
 
-# Setup DNS
 
-We are using a fake domain here, so we need to override our DNS resolution.
+# Use Pixelated
 
-```
-$ leap compile hosts
-```
-
-You need to edit your `hosts` file with admin privileges and add the output of above command to it.
-
-* Linux: `sudo editor /etc/hosts`
-* MacOS: `sudo nano /private/etc/hosts`
-
-see [Quick start tutorial/Setup DNS](https://leap.se/en/docs/platform/tutorials/quick-start#setup-dns) for details.
-
----
-
-# Time to start Bitmask and your favorite mail client
-
-- Install instructions: https://bitmask.net/en/install
-- Debian/Ubuntu only at the moment, sorry
+- Register a user at https://example.org (accept self-signed provider cert)
+- Login at https://example.org:8080/
 
 ```notes
 Show:
@@ -312,32 +349,6 @@ Show:
 - Mail from outside (ssh cat)
 ...
 ```
-
----
-
-# Install Pixelated
-
-- see https://github.com/pixelated/puppet-pixelated for details
-
-```
-$ mkdir -p files/puppet/modules
-$ git clone https://github.com/pixelated/puppet-pixelated.git files/puppet/modules/pixelated
-
-$ mkdir -p files/puppet/modules/custom/manifests
-$ echo 'class custom { include ::pixelated }' > files/puppet/modules/custom/manifests/init.pp
-
-$ leap deploy wildebeest
-$ leap test wildebeest
-```
-
----
-
-# Use Pixelated
-
-- Register a user at https://example.org
-- Login at https://example.org:8080/
-
-
 ---
 
 # Try more
@@ -354,7 +365,9 @@ $ leap test wildebeest
 - Github: [https://github.com/leapcode](https://github.com/leapcode)
 - Twitter: [https://twitter.com/leapcode](https://twitter.com/leapcode)
 - https://pixelated-project.org/
+- IRC: #leap@freenode
 
-Please consider to contribute - any help with QA or other is appreciated !
+- Come by and find us in the anarchist village
+- Please consider to contribute - any help with QA or other is appreciated !
 :heart:
 
