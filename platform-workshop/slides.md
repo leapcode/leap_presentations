@@ -158,7 +158,7 @@ $ mkdir -p ~/leap/example.org
 $ cd ~/leap/example.org
 ```
 
-***
+---
 
 # Checkout stable version of platform
 
@@ -223,12 +223,11 @@ $ leap cert csr
 - see https://github.com/pixelated/puppet-pixelated for details
 
 ```
-$ mkdir -p files/puppet/modules
-$ git clone https://github.com/pixelated/puppet-pixelated.git \
-    files/puppet/modules/pixelated
+mkdir -p files/puppet/modules/custom/manifests
+git clone https://github.com/pixelated/puppet-pixelated.git \
+  files/puppet/modules/pixelated
+echo 'class custom { include ::pixelated }' > files/puppet/modules/custom/manifests/init.pp 
 
-$ mkdir -p files/puppet/modules/custom/manifests
-$ echo 'class custom { include ::pixelated }' > files/puppet/modules/custom/manifests/init.pp
 ```
 
 ---
@@ -254,13 +253,14 @@ $ leap node add wildebeest ip_address:0.1.2.3 \
 - https://leap.se/en/docs/platform/guide/virtual-machines for details
 
 ```
-$ leap vm key-register
 $ leap vm add wildebeest services:webapp,couchdb,soledad,mx
 $ leap vm status
 ```
 
 ```notes
 - Only reocmmended for testing
+
+  `leap vm key-register` is needed if you haven't done it already
 
   cp ~/leap/git/bitmask/cloud.json .
   grep -v 'aws_' cloud.json
@@ -312,7 +312,7 @@ leap compile hosts
 You need to edit your `hosts` file with admin privileges and add the output of above command to it.
 
 * Linux: `sudo editor /etc/hosts`
-* MacOS: `sudo nano /private/etc/hosts`
+* MacOS: `sudo nano /etc/hosts`
 
 see [Quick start tutorial/Setup DNS](https://leap.se/en/docs/platform/tutorials/quick-start#setup-dns) for details.
 
@@ -334,7 +334,7 @@ see [Quick start tutorial/Setup DNS](https://leap.se/en/docs/platform/tutorials/
 $ leap test
 ```
 
-
+---
 
 # Use Pixelated
 

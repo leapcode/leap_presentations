@@ -1,4 +1,5 @@
 explain ssl certs foo
+copy paste foo
 
 # CSS
 
@@ -9,16 +10,6 @@ explain ssl certs foo
 
 - for Bitmask, Pixelated
 - where's the Bitmask gif elijah did a while ago ?
-
-# Prepare quick bitmask demo
-
-- After we deployed the provider we should show some Bitmask/Thunderbird magic
-
-# Logistics for workshop
-
-- Have slides online available
-- One beamer for command line, one for browser ?
-
 
 # Update Docuementation
 
@@ -34,4 +25,9 @@ explain ssl certs foo
 - leap compile hosts/zone should output pixelated entries
 - Not signed/not encrypted mail
 - Long waiting for mail to myself
-- 
+
+### Issues/for later
+
+- figure out vertical slides
+- net-ssh agent error
+- update LEAP/jessie so `leap node init` doesnt take so long
