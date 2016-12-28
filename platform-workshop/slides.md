@@ -16,7 +16,7 @@ please start right away with downloading the
 ## Pixelated Project
 ### Platform Workshop
 
-Kwadronaut (LEAP),  Varac (Pixelated, LEAP),   Zara (Pixelated)
+Denis (Pixelated), Kwadronaut (LEAP),  Varac (Pixelated, LEAP),   Zara (Pixelated)
 
 ```note
 We'll briefly explain both projects later
@@ -83,7 +83,7 @@ We'll briefly explain both projects later
 
 ---
 
-### Where to deploy to
+## Where to deploy to
 
 
 Vagrant         | Remote Server
