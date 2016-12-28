@@ -98,6 +98,7 @@ Requires Vagrant >= 1.5 and Virtualbox or other hypervisor | Physical or paravir
 
 # Tutorials
 
+These slides: https://leap.se/slides/33c3/
 
 ## Vagrant
 
