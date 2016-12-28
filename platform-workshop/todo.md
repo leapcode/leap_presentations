@@ -25,6 +25,7 @@ copy paste foo
 - leap compile hosts/zone should output pixelated entries
 - Not signed/not encrypted mail
 - Long waiting for mail to myself
+- Add 
 
 ### Issues/for later
 

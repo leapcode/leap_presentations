@@ -232,7 +232,17 @@ echo 'class custom { include ::pixelated }' > files/puppet/modules/custom/manife
 
 ---
 
-# Option A: Add an existing remote server
+# Option A: Add your local vagrant node
+
+```
+$ leap node add --local wildebeest services:webapp,couchdb,soledad,mx
+$ leap local start wildebeest
+$ leap local status
+```
+
+---
+
+# Option B: Add an existing remote server
 
 
 ```
@@ -246,7 +256,7 @@ $ leap node add wildebeest ip_address:0.1.2.3 \
 
 ---
 
-# Option B: Create a new server in the cloud
+# Option C: Create a new server in the cloud
 
 - Currently works only with AWS ec2
 - `cloud.json` needed for AWS config and credentials
@@ -268,17 +278,6 @@ $ leap vm status
 - Takes 4 mins to finish - questions ?
 - Otherwise show next slide while bootstrapping VM,
   and help out with vagrant
-```
-
-
----
-
-# Option C: Add your local vagrant node
-
-```
-$ leap node add --local wildebeest services:webapp,couchdb,soledad
-$ leap local start wildebeest
-$ leap local status
 ```
 
 ---
@@ -342,18 +341,21 @@ $ leap test
 - Login at https://example.org:8080/
 
 ```notes
+Don't use the link to the Pixelated Inbox
+
 Show:
 
 - Mail to myself
 - Mail to/from other workshop participants
-- Mail from outside (ssh cat)
+- Mail from outside (cat swaks -t varac@example.org -s IP)
 ...
 ```
 ---
 
 # Try more
 
-- LEAP: https://mail.bitmask.net (email) and https://demo.bitmask.net (VPN)
+- LEAP: https://mail.bitmask.net
+- Bitmask: https://bitmask.net
 - Pixelated: https://try.pixelated-project.org/ (no outbound mail)
 
 ---
