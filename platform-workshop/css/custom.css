@@ -11,3 +11,9 @@
 	font-size:1.5em;
 	line-height:1.3em;
 }
+
+.reveal pre code {
+	width: 99%;
+	margin: 20px auto;
+}
+
