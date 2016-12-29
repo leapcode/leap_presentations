@@ -1,0 +1,75 @@
+LEAP
+----------------
+* My n-th attempt to explain this. not to my mother, but to geeks.
+
+* Encrypted Communication for mere mortals
+* we're no heroes
+* superheroes welcome too :)
+* disclaimer: THINK we HAVE SOME IDEAS, both in the economical, technical and
+  social aspects of building communications infrastructure.
+* need to know if they're good
+* outsourcing the critiques :)
+* highly opinionated, but not trying to prove we're right
+* really need more eyes in here.
+
+* Activist background, activist setup.
+* Reduce the cost
+* Increase convenience
+* no proffessional experience! some mistakes on the road
+* Some really BAD IDEAS
+* Dreaming in code... very much alike.
+
+Monty Python's and The Holy Grail for Communication
+---------------------------------------------------
+* War against silos --> The short about the pirates against wall street...
+* SPAM and EGGS
+* [I'm missing something]
+
+* Mail is For OldFaggots
+* "To Our Friends"
+* An application for each friend?
+* We're terrible programmers --> rewrites
+* God object --> Monty Python "GOD"
+
+THE FEDERATION "PROBLEM"
+------------------------
+* Commoditization
+* Business model -> self-sustained providers, common code base.
+* Code ownership, deploying changes...
+
+Idea! make gpg usable
+---------------------
+You would think it was SIMPLE enough... glue code...
+oh boy how wrong we were...
+
+VPN
+---------------
+cross-platform vpn + firewall client.
+
+Mail: Overall architecture
+--------------------------
+
+
+Keymanager
+----------
+
+Soledad
+-------------------------
+Scalability: Those who forget history...
+Complexity creeps --> fractally
+Multiplatform? --> common efforts
+
+Bitmask
+---------------
+Breaking the traditional idea of client/server: yo broh
+I put a server in your client...
+[+] And a Client in your server...
+[+] Pixelated.
+
+Things to improve
+-----------------
+* too much setup complexity
+* trimming down dependencies
+* perf tuning: gnupg interaction, multi-tenant db.
+* soledad: syncing links, selective syncs
+* couchdb/bigcouch/mariadb db.
