@@ -1,4 +1,6 @@
-## While you wait
+## LEAP Encryption Access Project
+### Platform Workshop
+#### While you wait
 
 If you want to use `Vagrant` during this session
 please start right away with downloading the
@@ -13,31 +15,32 @@ please start right away with downloading the
 <img src="./images/kid-jumping.svg" width="20%" height="20%">
 
 ## LEAP Encryption Access Project
-## Pixelated Project
-### Platform Workshop
+### Provider Installation Workshop
 
 Varac (LEAP, Pixelated)
 
-```note
-We'll briefly explain both projects later
-
+```notes
 ```
 
 ---
 
-## What to expect
+## LEAP Encryption Access Project
+### Provider Installation Workshop
 
-- Have a LEAP provider installed, for real or for testing
-- Focus on encrypted email (no VPN)
+### What to expect
+
+- Short introduction to LEAP
+- Install LEAP provider that offers encrypted email (for real or for locally using vagrant)
+- Test encrypted email using Bitmask client with new provider (sorry, Linux only)
 
 ```note
 - Rush through the first part, then show more details during deploy phase (~20 mins)
-- VPN: Requires a second IP
+- Focus on encrypted mail, VPN: Requires a second IP
 ```
 
 ---
-
 ## Prerequisites
+
 
 - Have a working (!) Vagrant setup
   or a remote sever/VM installed with fresh Debian stable OS
@@ -53,17 +56,151 @@ We'll briefly explain both projects later
 
 ---
 
-## LEAP Encryption Access Project
+## Overview 
 
 - "Provider in a box"
-- VPN
-- Encrypted email
+- Make encryption as easy to use as possible
 - Strict client encryption
 
-```note
-- VPN: Cirumvent censorship, surveillance and geoblocking
-- Email: Transparent email encryption and keymanagement
+- Bitmask client: A client that works smoothly with any LEAP provider.
+- LEAP Platform:  A toolkit to make it easy for you to run a federated service provider.
+- New protocols:  So that users don't need to trust the provider.
+
+
+---
+
+## Current Services: VPN
+
+- Route all your internet traffic through an encrypted channel.
+- Prevent eavesdropping (thiefs in the public network, police, ...).
+- Circunvent censorship, surveillancec and geoblocking
+- Prevent leaks (DNS, IPv6, ...).
+
+---
+
+## Current Services: email
+
+- Transparent end-to-end encryption using OpenPGP.
+- Automatic key discovery and validation.
+- Service provider has no access to user data.
+- Strong protection for metadata, whenever possible.
+- Cloud synchronized for high availability on multiple devices.
+
+---
+
+## Bitmask client
+
+- currently available for Android (VPN) and Linux (VPN + Email)
+- Windows and Mac OS coming soon
+
+![Image-Absolute](https://rawgit.com/leapcode/leap_presentations/master/rgsoc2016_leap_overview/images/bitmask-icon.png)
+
+## Bitmask client
+
+![Image-Absolute](https://rawgit.com/leapcode/leap_presentations/master/rgsoc2016_leap_overview/images/bitmask.png)
+
+---
+
+## Bitmask Mail
+
+![Image-Absolute](https://rawgit.com/leapcode/leap_presentations/master/rgsoc2016_leap_overview/images/bitmask_mail.png)
+
+---
+
+## LEAP Platform
+
+- Configuration Management using puppet
+- Installs and configures the servers
+- leap_cli is the tool to deploy to the servers
+
+---
+
+## LEAP Platform Example: Setup single node email provider
+
 ```
+sudo gem install leap_cli
+leap new example --domain example.org
+cd example
+leap add-user --self
+leap cert ca
+leap cert csr
+leap node add blackbox \
+  services:couchdb,webapp,soledad,mx ip_address:1.1.1.3
+leap init node
+leap deploy
+```
+
+---
+
+## LEAP Platform: Install and configure the server(s)
+
+- Email: Postfix, spamassassin, clamav
+- Database: couchdb, stunnel
+- Webserver: apache
+- Encrypting remailer: leap-mx
+- Synchronisation: soledad
+- Account management, issue tracking: leap-webapp
+- Firewall: shorewall
+- Monitoring: nagios, check_mk
+- ...
+
+---
+
+## Server-side techstack
+
+- PLatform: Puppet
+- leap_cli: ruby
+- leap_web: Ruby on Rails
+- leap_mx, soledad: Python 2/Twisted
+
+---
+
+## Client-side techstack
+
+- Bitmask client: Python 2, Twisted, React JS
+- Bitmask Mail (a.k.a. Pixelated Useragent): Python 2, Twisted, FlightJS
+
+---
+
+## Soledad
+
+- Acronym for "Synchronization Of Locally Encrypted Data Among Devices"
+- Searchable client-encrypted synchronized database
+
+---
+
+
+## Key management
+
+- Automated keylookup and validation.
+
+---
+
+## LEAP Webapp
+
+- API for user registration and authentication
+- User Management
+- Integrated Issue Tracker
+- Payment processing
+- Customisable
+
+---
+
+## LEAP Webapp Main Page
+
+![Image-Absolute](https://rawgit.com/leapcode/leap_presentations/master/rgsoc2016_leap_overview/images/leap-webapp1.png)
+
+
+---
+
+## LEAP Webapp Account Management
+
+![Image-Absolute](https://rawgit.com/leapcode/leap_presentations/master/rgsoc2016_leap_overview/images/leap-webapp2.png)
+
+---
+
+## LEAP Encryption Access Project
+### Platform Workshop
 
 ---
 
@@ -78,14 +215,6 @@ We'll briefly explain both projects later
 
 ---
 
-## Pixelated
-
-- Encrypted Webmail on top of LEAP
-- No installation hassle
-- Private key will be unlocked on server
-- Looking for maintainers/contributors
-
----
 
 ## Where to deploy to
 
@@ -344,6 +473,15 @@ Show:
 - Mail from outside (cat swaks -t varac@example.org -s IP)
 ...
 ```
+---
+
+## Pixelated
+
+- Encrypted Webmail on top of LEAP
+- No installation hassle
+- Private key will be unlocked on server
+- Looking for maintainers/contributors
+
 ---
 
 # Try more
