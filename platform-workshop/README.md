@@ -11,20 +11,22 @@
 - keylookup for @leap.se keys doesn't work
 - Until we have an RDNS entry for blackbox.workshop.bitmask.net, riseup won't accept mails
 
-# Present
+# Prepare presentation
 
-- Recreate blackbox.workshop.bitmask.net server from [portal.eclips.is](https://portal.eclips.is/portal/cloud/instance/console?id=1690):
+DNS is already setup for `workshop.bitmask.net`, currently for 37.218.245.94 (blackbox, Amsterdam).
+As fallback we can also use 37.218.240.130 (backblock-backup, hong kong)
+
+- Recreate blackbox.workshop.bitmask.net server from [portal.eclips.is](https://portal.eclips.is/portal/cloud/instance/console?id=1692):
   - Stop instance
-  - [Reinstall](https://portal.eclips.is/portal/cloud/Instance/reinstall?id=1690)
-
+  - [Reinstall](https://portal.eclips.is/portal/cloud/Instance/reinstall?id=1692)
 
 Upload final slides and share URL https://leap.se/slides/platform-workshop
 
     rsync -avz ~/leap/git/leap_presentations/platform-workshop/slides/ website@hare.leap.se:slides/platform-workshop
 
-DNS is already setup for `workshop.bitmask.net`
+Start fresh
 
-    rm -rf ~/leap/workshop.bitmask.net ~/.leap/pixelated
+    rm -rf ~/leap/workshop.bitmask.net ~/.leap/pixelated ~/leap/workshop.bitmask.net
 
 # Todo
 

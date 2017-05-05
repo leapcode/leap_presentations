@@ -502,12 +502,12 @@ $ leap local status
 
 
 ```
-$ leap node add blackbox ip_address:37.218.240.130 \
+$ leap node add blackbox ip_address:37.218.245.94 \
   services:webapp,couchdb,soledad,mx
 ```
 
 ```notes
-Use workshop IP: 37.218.240.130
+Use workshop IP: 37.218.245.94
 ```
 
 ---
@@ -594,12 +594,12 @@ and use the listed entries in our DNS provider.
 These are for workshop.bitmask.net (in this workshop's case):
 
 ```
-@                     IN A      37.218.240.130
-blackbox              IN A      37.218.240.130
-api                   IN A      37.218.240.130
-nicknym               IN A      37.218.240.130
+@                     IN A      37.218.245.94
+blackbox              IN A      37.218.245.94
+api                   IN A      37.218.245.94
+nicknym               IN A      37.218.245.94
 @                     IN MX 10  blackbox
-@                     IN TXT    "v=spf1 MX ip4:37.218.240.130 -all"
+@                     IN TXT    "v=spf1 MX ip4:37.218.245.94 -all"
 234072283e._domainkey IN TXT    "v=DKIM1;h=sha256;k=rsa;s=email;p=MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEApdCDTAuRJJa0yx8T3Z7d" "f2NLE0oOvKysLqHqtvJk92Zf8RHYO6/RzpvJ5s51fPfOfyLnAjEzGs3gBL5GkWNV" "hLyMB9TzYnuQ9lmnz3ep3Hyh8U9yPVmNu1YZDrMYGaeoHE6FZXkmvrtBUOv3XAZw" "4BNQwdcHCa/Z9iWgMDtBx0h+56DRDTOrJvr7M/7qGxknBo0FnnQ/Qhw9GQjkTg0h" "UmFZjuvx3BmgN/9lCMkrjxC7qfADvGYMIYer3iPt0wI7cqAvgWN0a+7iqm2PU+aB" "wLPWOSmWsl3e6wzHW4jFS7EchilGXjHiGQ5WC9anRC6WWr3SomL/cxKZNCjTCfBy" "dwIDAQAB"
 ```
 
