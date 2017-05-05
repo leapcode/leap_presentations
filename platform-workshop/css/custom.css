@@ -1,10 +1,10 @@
 .reveal h2 {
-	font-size:2.07em;
+	font-size:1.8em;
 	hyphens: auto;
 }
 
 .reveal h1 {
-	font-size: 2.55em;
+	font-size: 2.0em;
 }
 
 .reveal code {
@@ -16,4 +16,3 @@
 	width: 99%;
 	margin: 20px auto;
 }
-
