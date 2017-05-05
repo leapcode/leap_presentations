@@ -9,45 +9,32 @@
 # Known Issues / Things to be aware of during presentation
 
 - keylookup for @leap.se keys doesn't work
+- Until we have an RDNS entry for blackbox.workshop.bitmask.net, riseup won't accept mails
 
 # Present
 
-    rm -rf ~/leap/workshop.bitmask.net
-
-- Recreate workshop.bitmask.net server fro portal.eclips.is
-- Make sure DNS entries work
-- 
+- Recreate blackbox.workshop.bitmask.net server from [portal.eclips.is](https://portal.eclips.is/portal/cloud/instance/console?id=1690):
+  - Stop instance
+  - [Reinstall](https://portal.eclips.is/portal/cloud/Instance/reinstall?id=1690)
 
 
+Upload final slides and share URL https://leap.se/slides/platform-workshop
+
+    rsync -avz ~/leap/git/leap_presentations/platform-workshop/slides/ website@hare.leap.se:slides/platform-workshop
+
+DNS is already setup for `workshop.bitmask.net`
+
+    rm -rf ~/leap/workshop.bitmask.net ~/.leap/pixelated
 
 # Todo
-
-HDMI beamer ??
-
-- Upload final slides and share URL https://leap.se/slides/Platform-Workshop
-- Create server with 2. IP
-- Change linux-kernel to "Linux LTS latest"
-- Create/update DNS entries for workshop.bitmask.net
-
-
-    May 04 14:26:15    - [wildebeest] Error: Could not set 'file' on ensure: No such file or directory @ dir_s_rmdir - /etc/systemd/system/apache2.service.d/autorestart.conf20170504-20145-1i4pf7u.lock at 21:/srv/leap/puppet/modules/systemd/manifests/unit_file.pp
-
-- net-ssh agent error ????? 
- 
-- Make new images for Bitmask-dev
- 
-- copy paste foo
 
 ## Nice to have 
 
 - update LEAP/jessie so `leap node init` doesnt take so long
-- where's the Bitmask gif elijah did a while ago ?
-- Include images of gpg keys for e.snowden and other fun stuff
-- figure out vertical slides with reveal-ck
 - Use custom header/footer for all slides
-- Add Avatar
 - explain ssl certs foo better
 
+- Next time: Add a VPN node ?
 
 ## Update Docuementation
 

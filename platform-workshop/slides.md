@@ -17,7 +17,7 @@ vagrant box add LEAP/jessie
 # LEAP Encryption Access Project
 ## Provider installation workshop
 
-by Varac (LEAP, Pixelated)
+<img src="./images/flying_cow_1000px.jpg" width="5%" height="5%"> @varac (LEAP, Pixelated) 
 
 ```notes
 Introduction:
@@ -66,7 +66,7 @@ Introduction:
 
 # Increase User experience
 
-<img src="./images/pizarra.jpg" width="100%" height="100%">
+<img src="./images/pizarra.jpg">
 
 ---
 
@@ -344,7 +344,7 @@ Requires Vagrant >= 1.5 and Virtualbox or other hypervisor | Physical or paravir
 
 # Tutorials
 
-These slides: https://leap.se/slides/33c3/
+These slides: https://leap.se/slides/platform-workshop
 
 # Vagrant
 
