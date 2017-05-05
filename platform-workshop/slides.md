@@ -74,6 +74,9 @@ Introduction:
 
 <video width="800" controls="controls" loop src="../video/fbi.mp4"></video>
 
+https://mayfirst.org/en/2012/fbi-returns-server/
+
+
 ---
 
 # What we have
@@ -112,19 +115,70 @@ Introduction:
 - Formerly Python 2, Twisted and QT
 - Rewritten with Python 2, Twisted and Javascript (React)
 
+***
+
+# Bitmask client
+## VPN 
+
+
+<img src="./images/bitmask-dev-demo1.png">
+
 ---
+
+# Bitmask client
+## VPN 
+
+
+<img src="./images/bitmask-dev-demo2.png">
+
+---
+
+# Bitmask client
+## VPN 
+
+
+<img src="./images/bitmask-dev-demo3.png">
+
+---
+
+# Bitmask client
+## VPN 
+
+```
+--- ~ » curl -s ipinfo.io
+{
+  "ip": "198.252.153.83",
+  "hostname": "No Hostname",
+  "city": "Seattle",
+  "region": "Washington",
+  "country": "US",
+  "loc": "47.6062,-122.3321",
+  "org": "AS16652 Riseup Networks",
+  "postal": "98194"
+}
+```
+
+---
+
+# Bitmask for Android
+## VPN
+
+<img src="./images/bitmask-android.png">
+
+***
+***
 
 # Bitmask client
 ## Encrypted Mail
 
 
-<img src="./images/bitmask-dev-mail1.png" width="100%" height="100%">
+<img src="./images/bitmask-dev-mail1.png">
 
 ---
 
 # Bitmask Mail
 
-<img src="./images/bitmask-dev-mail2.png" width="50%" height="50%">
+<img src="./images/bitmask-dev-mail2.png">
 
 
 ```notes
@@ -132,12 +186,59 @@ Integrated Mailclient using the Pixelated Useragent
 ```
 
 ---
+# Bitmask Mail
+
+<img src="./images/bitmask-dev-bitmask-mail.png">
+
+
+---
+# Bitmask Mail
+## Composing
+
+<img src="./images/bitmask-dev-bitmask-mail-compose.png">
+
+
+***
+
+***
 
 # Key management
 
 - Automated keylookup and validation.
 
 ---
+
+# Keys, Keys, Keys
+
+```
+--- » gpg --search-keys snowden
+gpg: data source: https://ntzwrk.org:443
+(1)	Snowden
+	  4096 bit RSA key 0xE941A4612E67D76A, created: 2017-03-24
+(2)	This Is Snowden
+	  4096 bit RSA key 0xBB44DF1AFC479844, created: 2017-03-20
+(3)	Edward Snowden <trump2020buildawall@gmail.com>
+	  4096 bit RSA key 0xA15DD46C59051BDB, created: 2017-03-12, expires: 2022-03-11
+(4)	Edward Snowden <trump2020buildawall@gmail.com>
+	  4096 bit RSA key 0xE64ECB1548116AEB, created: 2017-03-10, expires: 2022-03-09
+(5)	Snowden <sfogert@gmail.com>
+	  3072 bit RSA key 0xE643E968226937A1, created: 2017-03-10
+(6)	Edward Snowden <joshing@protonmail.com>
+	  4096 bit RSA key 0x2C3C1EFA83946932, created: 2017-01-20, expires: 2021-01-20
+(7)	Edward Snowden (Very secret) <ed_snowden2016@outlook.com>
+	  2048 bit RSA key 0xDC245D84A0F97A17, created: 2016-12-14
+(8)	Edward Snowden
+	  4096 bit RSA key 0xFAD43291D0951541, created: 2016-12-10
+(9)	Edward Joseph Snowden <snowden@edwardsnowden>
+	  4096 bit RSA key 0x34BD314D37015D55, created: 2016-11-02, expires: 2020-11-02
+(10)	snowden <snowdenet@163.com>
+	  3072 bit RSA key 0xFD764233079ACE40, created: 2016-10-11
+(11)	Edvard Snowden <lordkott1987@gmail.com>
+	  2048 bit RSA key 0xF5BE6495E2210CE1, created: 2016-10-07
+Keys 1-11 of 146 for "snowden".  Enter number(s), N)ext, or Q)uit >
+```
+
+***
 
 # LEAP Platform
 
@@ -260,9 +361,11 @@ These slides: https://leap.se/slides/33c3/
 # Install prerequisites
 
 - Install leap-cli and manage your provider config on your workstation/laptop, NOT on the server 
+- Managing your server(s) happens from you laptop, you should only seldomly login to your servers for debugging.
 
 ```notes
 - The Provider config contains secret key material which should not reside on the server for security reasons.
+- All commands shown here are run from the laptop.
 ```
 
 ---
@@ -310,7 +413,7 @@ $ mkdir -p ~/leap/workshop.bitmask.net
 $ cd ~/leap/workshop.bitmask.net
 ```
 
----
+***
 
 # leap_platform master branch build status
 
@@ -335,7 +438,7 @@ git clone -b version/0.9.x https://leap.se/git/leap_platform \
 
 ```
 
----
+***
 
 # Create provider config
 
@@ -454,10 +557,10 @@ $ leap deploy blackbox
 - We'll setup DNS meanwhile
 ```
 
----
+***
 
-
-# Option A: Fake DNS for Vagrant
+# DNS
+## Option A: Fake DNS for Vagrant
 
 We are using a domain here without proper DNS, so we need to override our DNS resolution.
 
@@ -477,7 +580,8 @@ see [Quick start tutorial/Setup DNS](https://leap.se/en/docs/platform/tutorials/
 
 ---
 
-# Option B: Setup DNS for real
+# DNS
+## Option B: Setup DNS for real
 
 In case of a real provider with proper domain and DNS, we need to setup DNS:
 
@@ -499,9 +603,20 @@ nicknym               IN A      37.218.240.130
 234072283e._domainkey IN TXT    "v=DKIM1;h=sha256;k=rsa;s=email;p=MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEApdCDTAuRJJa0yx8T3Z7d" "f2NLE0oOvKysLqHqtvJk92Zf8RHYO6/RzpvJ5s51fPfOfyLnAjEzGs3gBL5GkWNV" "hLyMB9TzYnuQ9lmnz3ep3Hyh8U9yPVmNu1YZDrMYGaeoHE6FZXkmvrtBUOv3XAZw" "4BNQwdcHCa/Z9iWgMDtBx0h+56DRDTOrJvr7M/7qGxknBo0FnnQ/Qhw9GQjkTg0h" "UmFZjuvx3BmgN/9lCMkrjxC7qfADvGYMIYer3iPt0wI7cqAvgWN0a+7iqm2PU+aB" "wLPWOSmWsl3e6wzHW4jFS7EchilGXjHiGQ5WC9anRC6WWr3SomL/cxKZNCjTCfBy" "dwIDAQAB"
 ```
 
----
+***
+
+# Start downloading Bitmask
+
+- Download latest Bitmask build from https://bitmask.net/en/install/linux#latest-builds
+
+
+
 
 # Questions ?
+
+```notes
+Download takes a bit (75mb), so we start it before it's time for questions ?
+```
 
 ---
 
@@ -515,19 +630,26 @@ $ leap test
 
 # Use Bitmask
 
-- Download latest Bitmask build from https://bitmask.net/en/install/linux#latest-builds
-- Register a user at https://workshop.bitmask.net (accept self-signed provider cert)
+- Extract downloaded Bitmask archive, and run dist/bitmask-0.9.5/bitmask
+- Add workshop.bitmask.net as a new provider
+- Register a new user
 
+- Close Bitmask and login again, then click "Open Mail"
 ```notes
+Known Issues:
+
+- [Bitmask Mail: Incoming mails don't show up on first run](https://0xacab.org/leap/bitmask-dev/issues/8878)
+- [Nicknym sometimes refused to work](https://0xacab.org/leap/platform/issues/8787)
+- [Bitmask doesn't terminate properly]
 
 Show:
 
 - Mail to myself
 - Mail to/from other workshop participants
-- Mail from outside (cat swaks -t varac@workshop.bitmask.net -s IP)
+- Mail from outside `swaks -t varac@workshop.bitmask.net`
 ...
 ```
----
+***
 
 # Pixelated
 
@@ -538,11 +660,20 @@ Show:
 
 ---
 
+# Try Pixelated
+
+<img src="./images/pixelated-webmail.png">
+
+
+https://try.pixelated-project.org/
+
+***
+
 # Try more
 
-- LEAP: https://mail.bitmask.net
-- Bitmask: https://bitmask.net
-- Pixelated: https://try.pixelated-project.org/ (no outbound mail)
+- LEAP Demo provider (mail): https://mail.bitmask.net
+- LEAP Demo provider (VPN):  https://demo.bitmask.net
+- Pixelated: https://try.pixelated-project.org/ (no outbound mail, pre-configured accounts, gone soon...)
 
 ---
 
@@ -561,6 +692,8 @@ Show:
 https://leap.se/en/docs/get-involved
 https://leap.se/en/docs/get-involved/project-ideas
 
+https://pixelated-project.org/faq/#sounds-good-how-can-i-contribute
+
 ---
 
 # Thanks!
@@ -569,5 +702,17 @@ https://leap.se/en/docs/get-involved/project-ideas
 - Bitmask Application: [https://bitmask.net](https://bitmask.net)
 - Github: [https://github.com/leapcode](https://github.com/leapcode)
 - Twitter: [https://twitter.com/leapcode](https://twitter.com/leapcode)
-- https://pixelated-project.org/
 - IRC: #leap@freenode
+
+- https://pixelated-project.org/
+
+***
+
+# Etc
+
+
+---
+
+# Bitmask Schema
+
+<img src="./images/schema.jpg">
