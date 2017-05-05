@@ -1,3 +1,9 @@
+May 04 14:26:15    - [wildebeest] Error: Could not set 'file' on ensure: No such file or directory @ dir_s_rmdir - /etc/systemd/system/apache2.service.d/autorestart.conf20170504-20145-1i4pf7u.lock at 21:/srv/leap/puppet/modules/systemd/manifests/unit_file.pp
+
+
+
+
+
 explain ssl certs foo
 copy paste foo
 
@@ -8,7 +14,7 @@ copy paste foo
 
 # Images
 
-- for Bitmask, Pixelated
+- for Bitmask
 - where's the Bitmask gif elijah did a while ago ?
 
 # Update Docuementation
@@ -19,13 +25,6 @@ copy paste foo
 # Issues
 
 - keylookup for @leap.se keys doesn't work
-
-## Pixelated
-
-- leap compile hosts/zone should output pixelated entries
-- Not signed/not encrypted mail
-- Long waiting for mail to myself
-- Add 
 
 ### Issues/for later
 

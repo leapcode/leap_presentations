@@ -16,7 +16,7 @@ please start right away with downloading the
 ## Pixelated Project
 ### Platform Workshop
 
-Denis (Pixelated), Kwadronaut (LEAP),  Varac (Pixelated, LEAP),   Zara (Pixelated)
+Varac (LEAP, Pixelated)
 
 ```note
 We'll briefly explain both projects later
@@ -29,10 +29,10 @@ We'll briefly explain both projects later
 
 - Have a LEAP provider installed, for real or for testing
 - Focus on encrypted email (no VPN)
-- Install Pixelated Webmail on top (optional)
 
 ```note
 - Rush through the first part, then show more details during deploy phase (~20 mins)
+- VPN: Requires a second IP
 ```
 
 ---
@@ -40,7 +40,7 @@ We'll briefly explain both projects later
 ## Prerequisites
 
 - Have a working (!) Vagrant setup
-- Or a remote sever/VM installed with fresh Debian stable OS
+  or a remote sever/VM installed with fresh Debian stable OS
 - A public/private ssh keypair to login your host
 
 ```notes
@@ -83,6 +83,7 @@ We'll briefly explain both projects later
 - Encrypted Webmail on top of LEAP
 - No installation hassle
 - Private key will be unlocked on server
+- Looking for maintainers/contributors
 
 ---
 
@@ -112,7 +113,7 @@ These slides: https://leap.se/slides/33c3/
 
 ---
 
-# Install pre&shy;requisites
+# Install prerequisites
 
 - Install leap-cli on your workstation/laptop, NOT on the server !
 
@@ -183,18 +184,19 @@ git checkout -b 0.9.0 0.9.0
 ```
 $ leap new .
 
-The primary domain of the provider: |example.org|
-The name of the provider: |Example|
-File path of the leap_platform directory: |/home/varac/leap_platform|
-Default email address contacts: |root@example.org|
-The platform directory "/home/varac/leap/leap_platform" does not exist.
-Do you want me to create it by cloning from the
-git repository https://leap.se/git/leap_platform.git? y
-...
+  The primary domain of the provider: |example.org|
+  The name of the provider: |Example|
+  File path of the leap_platform directory: |/home/varac/leap_platform|
+  Default email address contacts: |root@example.org|
+  The platform directory "/home/varac/leap/leap_platform" does not exist.
+  Do you want me to create it by cloning from the
+  git repository https://leap.se/git/leap_platform.git? y
+  ...
 ```
 
 
-```note
+```notes
+Just accept the default values
 ```
 
 ---
@@ -219,24 +221,12 @@ $ leap cert csr
 
 ---
 
-# Add Pixelated webmail
-
-- see https://github.com/pixelated/puppet-pixelated for details
-
-```
-mkdir -p files/puppet/modules/custom/manifests
-git clone https://github.com/pixelated/puppet-pixelated.git \
-  files/puppet/modules/pixelated
-echo 'class custom { include ::pixelated }' > files/puppet/modules/custom/manifests/init.pp 
-
-```
-
----
-
 # Option A: Add your local vagrant node
 
 ```
 $ leap node add --local wildebeest services:webapp,couchdb,soledad,mx
+$ leap list
+
 $ leap local start wildebeest
 $ leap local status
 ```
@@ -274,7 +264,8 @@ $ leap vm status
   `leap vm key-register` is needed if you haven't done it already
 
   cp ~/leap/git/bitmask/cloud.json .
-  grep -v 'aws_' cloud.json
+  grep -v aws_ cloud.json
+  leap vm status | ts
 
 - Takes 4 mins to finish - questions ?
 - Otherwise show next slide while bootstrapping VM,
@@ -293,7 +284,11 @@ $ leap deploy wildebeest
 ```
 
 ```notes
-- Takes ~20 min to finish
+
+    unbuffer leap node init wildebeest | ts
+    unbuffer leap deploy wildebeest | ts
+
+- Takes ~10 min to finish on AWS
 - We'll setup DNS meanwhile
 ```
 
@@ -336,13 +331,11 @@ $ leap test
 
 ---
 
-# Use Pixelated
+# Use Bitmask
 
 - Register a user at https://example.org (accept self-signed provider cert)
-- Login at https://example.org:8080/
 
 ```notes
-Don't use the link to the Pixelated Inbox
 
 Show:
 
@@ -361,6 +354,23 @@ Show:
 
 ---
 
+# Contribute
+
+- Please consider to contribute - any help with QA or other is appreciated !
+:heart:
+
+- UX
+- Python / Twisted
+- JS / React
+- MacOS
+- Windows
+- Puppet
+
+https://leap.se/en/docs/get-involved
+https://leap.se/en/docs/get-involved/project-ideas
+
+---
+
 # Thanks!
 
 - LEAP Encryption Access Project: [https://leap.se](https://leap.se)
@@ -369,8 +379,3 @@ Show:
 - Twitter: [https://twitter.com/leapcode](https://twitter.com/leapcode)
 - https://pixelated-project.org/
 - IRC: #leap@freenode
-
-- Come by and find us in the anarchist village
-- Please consider to contribute - any help with QA or other is appreciated !
-:heart:
-
