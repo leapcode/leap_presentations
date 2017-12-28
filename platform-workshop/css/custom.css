@@ -1,15 +1,15 @@
+.reveal h1 {
+	font-size: 1.5em;
+}
+
 .reveal h2 {
-	font-size:1.8em;
+	font-size:1.3em;
 	hyphens: auto;
 }
 
-.reveal h1 {
-	font-size: 2.0em;
-}
-
 .reveal code {
-	font-size:1.5em;
-	line-height:1.3em;
+	font-size:1.2em;
+	line-height:1.0em;
 }
 
 .reveal pre code {
