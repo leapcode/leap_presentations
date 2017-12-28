@@ -4,12 +4,7 @@
 # Generate slides
 
     reveal-ck generate
-
-
-# Known Issues / Things to be aware of during presentation
-
-- keylookup for @leap.se keys doesn't work
-- Until we have an RDNS entry for blackbox.workshop.bitmask.net, riseup won't accept mails
+    chromium-browser slides/index.html
 
 # Prepare presentation
 
@@ -32,9 +27,11 @@ Start fresh
 
 ## Nice to have 
 
-- update LEAP/jessie so `leap node init` doesnt take so long
+- Add mail/vpn service
+- Code block wraps
+- Anonymous feedback
+
 - Use custom header/footer for all slides
-- explain ssl certs foo better
 
 - Next time: Add a VPN node ?
 

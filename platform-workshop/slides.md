@@ -1,3 +1,17 @@
+***
+
+<img src="./images/kid-jumping.svg" width="20%" height="20%">
+
+# LEAP Encryption Access Project
+## Provider installation workshop
+
+```notes
+Introduction:
+  - working for LEAP since its start in 2012
+```
+
+---
+
 <img src="./images/kid-jumping.svg" width="20%" height="20%">
 
 # LEAP Provider installation workshop
@@ -10,49 +24,34 @@ please start right away with downloading the
 vagrant box add LEAP/jessie
 ```
 
----
+***
 
 <img src="./images/kid-jumping.svg" width="20%" height="20%">
 
 # LEAP Encryption Access Project
-## Provider installation workshop
 
-<img src="./images/flying_cow_1000px.jpg" width="5%" height="5%"> @varac (LEAP, Pixelated) 
-
-```notes
-Introduction:
-  - working for LEAP since its start in 2012
-  - The last 3 years for Pixelated, with build on LEAP
-```
+@ Anarchist Assembly, Hall 2, Komona Cluster
+IRC: #leap @ irc.freenode.net
 
 ---
+
 
 # What to expect
 
 - Short introduction to LEAP
-- Install LEAP provider that offers encrypted email (for real or for locally using vagrant)
-- Test encrypted email using Bitmask client with new provider (sorry, Linux only)
+- Install LEAP provider: VPN or encrypted Email (or both if time allows) 
+- Test provider using Bitmask client (Android, Mac, Linux, sorry no Windows so far)
 
 ```note
+- Ask who wants to setup a provider, and what services they are interested in
+- Note: Focus on encrypted mail, VPN: Requires a second IP
 - Rush through the first part, then show more details during deploy phase (~20 mins)
-- Focus on encrypted mail, VPN: Requires a second IP
 ```
 
----
-# Prerequisites
+***
+<img src="./images/kid-jumping.svg" width="20%" height="20%">
 
-
-- Have a working (!) Vagrant setup
-  or a remote sever/VM installed with fresh Debian stable OS
-- A public/private ssh keypair to login your host
-
-```notes
-- We cannot help you / debug your vagrant issues here
-- Otherwise, please pair with your neighbour
-- When you are stuck, pls tell us - if it can be fixed easily, great. If not, pls just continue to watch the demo,
-  we can help you out later.
-- Who wants to use vagrant/a remote sever ?
-```
+# Introduction to LEAP
 
 ---
 
@@ -115,6 +114,7 @@ https://mayfirst.org/en/2012/fbi-returns-server/
 - Formerly Python 2, Twisted and QT
 - Rewritten with Python 2, Twisted and Javascript (React)
 
+***
 ***
 
 # Bitmask client
@@ -182,7 +182,9 @@ https://mayfirst.org/en/2012/fbi-returns-server/
 
 
 ```notes
-Integrated Mailclient using the Pixelated Useragent
+- Integrated Mailclient using the Pixelated Useragent
+- Not maintained anymore
+- Migrating to Nylas Mail
 ```
 
 ---
@@ -239,7 +241,7 @@ Keys 1-11 of 146 for "snowden".  Enter number(s), N)ext, or Q)uit >
 ```
 
 ***
-
+***
 # LEAP Platform
 
 - Configuration Management using puppet
@@ -247,7 +249,6 @@ Keys 1-11 of 146 for "snowden".  Enter number(s), N)ext, or Q)uit >
 - leap_cli is the tool to deploy to the servers
 
 ---
-
 # LEAP Platform Example: Setup single node email provider
 
 ```
@@ -277,7 +278,7 @@ leap deploy
 - Monitoring: nagios, check_mk
 - ...
 
----
+***
 
 # Server-side techstack
 
@@ -300,8 +301,7 @@ leap deploy
 - Acronym for "Synchronization Of Locally Encrypted Data Among Devices"
 - Searchable client-encrypted synchronized database
 
----
-
+***
 # LEAP Webapp
 
 - API for user registration and authentication
@@ -323,69 +323,63 @@ leap deploy
 
 <img src="./images/leap-webapp2.png" width="100%" height="100%">
 
----
+***
+<img src="./images/kid-jumping.svg" width="20%" height="20%">
 
 # LEAP Encryption Access Project
 ## Platform Workshop
 
-
 ---
+# System requirements 
 
+- A remote sever/VM installed with fresh Debian jessie (!) OS
+- Physical or paravirtualized Server (KVM, Xen, OpenStack, Amazon, but not VirtualBox or OpenVZ)
+- Depending on the service 1-4 GB RAM, >3 GB disk space
+- Able to login as root with ssh key
+- Second public IPv4 (for VPN only)
 
-# Where to deploy to
-
-
-Vagrant         | Remote Server
-:-------------: | :-------------:
-Locally on your laptop, for testing | Out there, for testing or real
-Requires Vagrant >= 1.5 and Virtualbox or other hypervisor | Physical or paravirtualized Server (KVM, Xen, OpenStack, Amazon, but not VirtualBox or OpenVZ)
-
+```notes
+- Please pair with your neighbour
+- When you are stuck, pls tell us - if it can be fixed easily, great.
+- If not, pls just continue to watch the demo,
+  we can help you out later.
+```
 ---
 
 # Tutorials
 
 These slides: https://leap.se/slides/platform-workshop
 
-# Vagrant
-
-- https://leap.se/en/docs/platform/tutorials/vagrant
-
-
-# Single node email provider
-
-- https://leap.se/en/docs/platform/tutorials/quick-start
-- https://leap.se/en/docs/platform/tutorials/single-node-email
-
 ---
 
 # Install prerequisites
 
-- Install leap-cli and manage your provider config on your workstation/laptop, NOT on the server 
-- Managing your server(s) happens from you laptop, you should only seldomly login to your servers for debugging.
+- Ruby
+- leap-cli gem to manage your provider config on your workstation/laptop
 
 ```notes
 - The Provider config contains secret key material which should not reside on the server for security reasons.
+- Managing your server(s) happens from you laptop, you should only seldomly login to your servers for debugging.
 - All commands shown here are run from the laptop.
 ```
 
 ---
+# Ruby
 
-# Debian & Ubuntu
-
-```
-$ sudo apt install git ruby ruby-dev rsync \
-    openssh-client openssl rake make bzip2
-```
-
-# Mac OS
+## Debian / Ubuntu
 
 ```
-$ brew install ruby-install
-$ ruby-install ruby
+$ apt install rubygems
+```
+
+## Mac OS
+
+```
+$ brew install ruby
 ```
 
 ```notes
-- `workstation$` indicates this command should be run on your laptop
+- `$` indicates this command should be run on your laptop
 ```
 
 ---
@@ -397,23 +391,36 @@ $ ruby-install ruby
 $ sudo gem install leap_cli
 
 $ leap --version
-leap 1.9, ruby 2.3.3
-...
-
-```
-
----
-
-# Prepare provider config
-
-Use `workshop.bitmask.net` for testing, or pick your own domain.
-
-```
-$ mkdir -p ~/leap/workshop.bitmask.net
-$ cd ~/leap/workshop.bitmask.net
+leap 1.9.2, ruby 2.3.3
 ```
 
 ***
+
+# Create provider config
+
+```
+$ leap new --domain workshop.bitmask.net ./workshop
+  Create directory /home/dev/workshop ? y
+  = created /home/dev/workshop/
+
+  The name of the provider: |Example| Workshop demo
+  File path of the leap_platform directory: |/home/dev/leap_platform| 
+  Default email address contacts: |root@workshop.bitmask.net| 
+
+  The platform directory "/home/varac/dev/projects/leap/leap_platform" does not exist.
+  Do you want me to create it by cloning from the
+  git repository https://leap.se/git/leap_platform.git? y
+  …  
+```
+
+
+```notes
+- Just accept the default values
+- The directory name doesn't mean anything
+- Slides below only for cloning leap_platform with different branches
+```
+
+---
 
 # leap_platform master branch build status
 
@@ -430,50 +437,23 @@ If the build status of current leap_platform:master failed we need to checkout t
 
 
 ```
-git clone -b version/0.9.x https://leap.se/git/leap_platform \
+git clone -b version/0.10.0 https://leap.se/git/leap_platform \
   ../leap_platform
 ```
-
-```notes
-
-```
-
 ***
-
-# Create provider config
-
-```
-$ leap new --domain workshop.bitmask.net .
-
-  The name of the provider: |Example| Workshop demo
-  File path of the leap_platform directory: |/home/varac/dev/projects/leap/leap_platform| 
-  Default email address contacts: |root@workshop.bitmask.net| 
-
-  The platform directory "/home/varac/dev/projects/leap/leap_platform" does not exist.
-  Do you want me to create it by cloning from the
-  git repository https://leap.se/git/leap_platform.git? y
-  ...
-```
-
-
-```notes
-Just accept the default values
-```
-
----
 
 # Add your ssh key
 
 
 ```
-$ leap add-user $user --self
+$ leap user add --self
 ```
 
 ---
 
 # SSL certificates
 
-Create SSL certificate authority, to self-sign host certificates:
+Create a SSL certificate authority and a certificate signining request:
 
 ```
 $ leap cert ca
@@ -481,38 +461,52 @@ $ leap cert csr
 ```
 
 ```notes
-Later on we can deploy proper LE certs
+- CSR can get used to buy a proper signed cert
+- But letsencrypt is a better option for free, we can deploy proper LE certs
 ```
 
----
+***
 
-# Option A: Add your local vagrant node
+# Single node VPN provider
 
-```
-$ leap node add --local blackbox services:webapp,couchdb,soledad,mx
-$ leap list
-
-$ leap local start blackbox
-$ leap local status
-```
-
----
-
-# Option B: Add an existing remote server
-
+Tutorial:  https://leap.se/en/docs/platform/tutorials/single-node-vpn
 
 ```
-$ leap node add blackbox ip_address:37.218.245.94 \
-  services:webapp,couchdb,soledad,mx
+$ export OPTS='services:webapp,couchdb,openvpn openvpn.gateway_address:37.218.245.4'
 ```
 
 ```notes
-Use workshop IP: 37.218.245.94
+- Next slides for dh parameters
+```
+---
+
+# Generate diffie-hellman parameters for openvpn
+
+```
+$ leap cert dh
+```
+
+***
+
+# Single node email provider
+
+Tutorial:  https://leap.se/en/docs/platform/tutorials/single-node-email
+
+```
+$ export OPTS='services:webapp,couchdb,soledad,mx'
+```
+
+***
+
+# Add an existing remote server
+
+```
+$ leap node add blackbox ip_address:37.218.245.94 $OPTS
 ```
 
 ---
 
-# Option C: Create a new server in the cloud
+# Option B: Create a new server in the cloud
 
 - Currently works only with AWS ec2
 - `cloud.json` needed for AWS config and credentials
@@ -537,7 +531,7 @@ $ leap vm status
   and help out with vagrant
 ```
 
----
+***
 
 # Time to deploy !
 
@@ -545,6 +539,7 @@ $ leap vm status
 $ leap list
 
 $ leap node init blackbox
+
 $ leap deploy blackbox 
 ```
 
@@ -553,43 +548,21 @@ $ leap deploy blackbox
     unbuffer leap node init blackbox | ts
     unbuffer leap deploy blackbox | ts
 
-- Takes ~10 min to finish on AWS, 15 min on Greenhost
+- Email deploy: ~10 min on AWS, 15 min on Greenhost
+- VPN deploy:    ~8 min on AWS, 13 min on Greenhost
 - We'll setup DNS meanwhile
 ```
 
 ***
 
-# DNS
-## Option A: Fake DNS for Vagrant
-
-We are using a domain here without proper DNS, so we need to override our DNS resolution.
-
-- Open another terminal and:
-```
-cd ~/leap/workshop.bitmask.net
-leap compile hosts
-```
-
-You need to edit your `hosts` file with admin privileges and add the output of above command to it.
-
-* Linux: `sudo editor /etc/hosts`
-* MacOS: `sudo nano /etc/hosts`
-
-see [Quick start tutorial/Setup DNS](https://leap.se/en/docs/platform/tutorials/quick-start#setup-dns) for details.
-
-
----
 
 # DNS
-## Option B: Setup DNS for real
-
-In case of a real provider with proper domain and DNS, we need to setup DNS:
 
 ```
 leap compile zone
 ```
 
-and use the listed entries in our DNS provider.
+Use the listed entries in our DNS provider.
 
 These are for workshop.bitmask.net (in this workshop's case):
 
@@ -603,20 +576,55 @@ nicknym               IN A      37.218.245.94
 234072283e._domainkey IN TXT    "v=DKIM1;h=sha256;k=rsa;s=email;p=MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEApdCDTAuRJJa0yx8T3Z7d" "f2NLE0oOvKysLqHqtvJk92Zf8RHYO6/RzpvJ5s51fPfOfyLnAjEzGs3gBL5GkWNV" "hLyMB9TzYnuQ9lmnz3ep3Hyh8U9yPVmNu1YZDrMYGaeoHE6FZXkmvrtBUOv3XAZw" "4BNQwdcHCa/Z9iWgMDtBx0h+56DRDTOrJvr7M/7qGxknBo0FnnQ/Qhw9GQjkTg0h" "UmFZjuvx3BmgN/9lCMkrjxC7qfADvGYMIYer3iPt0wI7cqAvgWN0a+7iqm2PU+aB" "wLPWOSmWsl3e6wzHW4jFS7EchilGXjHiGQ5WC9anRC6WWr3SomL/cxKZNCjTCfBy" "dwIDAQAB"
 ```
 
+---
+
+# DNS
+## Option A: Fake DNS for new provider 
+
+We are using a domain here without proper DNS, so we need to override our DNS resolution.
+
+- Open another terminal and:
+```
+cd ~/workshop
+leap compile hosts
+```
+
+You need to edit your `hosts` file with admin privileges and add the output of above command to it.
+
+* Linux: `sudo editor /etc/hosts`
+* MacOS: `sudo nano /etc/hosts`
+
+see [Quick start tutorial/Setup DNS](https://leap.se/en/docs/platform/tutorials/quick-start#setup-dns) for details.
+
 ***
 
-# Start downloading Bitmask
+# Download Bitmask client
 
-- Download latest Bitmask build from https://bitmask.net/en/install/linux#latest-builds
+- Download Bitmask from https://bitmask.net
+- Available for Linux, Android, MacOS
 
-
-
+```notes
+- Ubuntu Artful broken
+- Download takes a bit (75mb), so we start it before it's time for questions ?
+- Any potential Windows contributors ?
+```
 
 # Questions ?
 
-```notes
-Download takes a bit (75mb), so we start it before it's time for questions ?
+---
+
+# Let's encrypt certificates
+
+For proper, free-of-cost TLS certificates issued
+by https://letsencrypt.org/:
+
 ```
+$ leap cert register
+$ leap cert renew workshop.bitmask.net
+$ leap deploy --tags x509 --fast
+```
+
+Check https://workshop.bitmask.net in browser afterwards.
 
 ---
 
@@ -630,59 +638,36 @@ $ leap test
 
 # Use Bitmask
 
-- Extract downloaded Bitmask archive, and run dist/bitmask-0.9.5/bitmask
+- Extract downloaded Bitmask archive, and run ./bitmask-0.10.2/bitmask
 - Add workshop.bitmask.net as a new provider
 - Register a new user
 
-- Close Bitmask and login again, then click "Open Mail"
 ```notes
-Known Issues:
-
-- [Bitmask Mail: Incoming mails don't show up on first run](https://0xacab.org/leap/bitmask-dev/issues/8878)
-- [Nicknym sometimes refused to work](https://0xacab.org/leap/platform/issues/8787)
-- [Bitmask doesn't terminate properly]
-
 Show:
+
+- VPN
 
 - Mail to myself
 - Mail to/from other workshop participants
 - Mail from outside `swaks -t varac@workshop.bitmask.net`
-...
+- Bitmask mail now Pixelated, migration to Nylas Mail client
+…
 ```
-***
-
-# Pixelated
-
-- Encrypted Webmail on top of LEAP
-- No installation hassle
-- Private key will be unlocked on server
-- Looking for maintainers/contributors
-
 ---
-
-# Try Pixelated
-
-<img src="./images/pixelated-webmail.png">
-
-
-https://try.pixelated-project.org/
-
-***
 
 # Try more
 
-- LEAP Demo provider (mail): https://mail.bitmask.net
-- LEAP Demo provider (VPN):  https://demo.bitmask.net
-- Pixelated: https://try.pixelated-project.org/ (no outbound mail, pre-configured accounts, gone soon...)
+- LEAP Demo provider (Email): https://mail.bitmask.net
+
+- LEAP Demo provider (VPN):   https://demo.bitmask.net
 
 ---
 
 # Contribute
 
-- Please consider to contribute - any help with QA or other is appreciated !
-:heart:
+- Please consider to contribute - any help with QA or other is appreciated !  :heart:
 
-- UX
+- User experience / QA
 - Python / Twisted
 - JS / React
 - MacOS
@@ -692,7 +677,10 @@ https://try.pixelated-project.org/
 https://leap.se/en/docs/get-involved
 https://leap.se/en/docs/get-involved/project-ideas
 
-https://pixelated-project.org/faq/#sounds-good-how-can-i-contribute
+```notes
+- Short of funding, looking for contributors
+- Show get involved and project ideas website
+```
 
 ---
 
@@ -703,8 +691,7 @@ https://pixelated-project.org/faq/#sounds-good-how-can-i-contribute
 - Github: [https://github.com/leapcode](https://github.com/leapcode)
 - Twitter: [https://twitter.com/leapcode](https://twitter.com/leapcode)
 - IRC: #leap@freenode
-
-- https://pixelated-project.org/
+- Come by: Anarchist Assembly, Hall 2, Komona Cluster
 
 ***
 
