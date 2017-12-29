@@ -1,0 +1,892 @@
+<section>
+<section>
+
+<p><img src="./images/kid-jumping.svg" width="20%" height="20%"></p>
+
+<h1>LEAP Encryption Access Project</h1>
+<h2>Provider installation workshop</h2>
+
+<aside class="notes">
+
+<p>Introduction:</p>
+<ul>
+  <li>working for LEAP since its start in 2012</li>
+</ul>
+
+</aside>
+
+</section>
+<section>
+
+<p><img src="./images/kid-jumping.svg" width="20%" height="20%"></p>
+
+<h1>LEAP Provider installation workshop</h1>
+
+<p>If you want to use Vagrant during this session<br>
+please start right away with downloading the<br>
+“LEAP/jessie” vagrantbox:</p>
+
+<pre><code>vagrant box add LEAP/jessie
+</code></pre>
+
+</section>
+</section>
+<section>
+
+<p><img src="./images/kid-jumping.svg" width="20%" height="20%"></p>
+
+<h1>LEAP Encryption Access Project</h1>
+
+<p>@ Anarchist Assembly, Hall 2, Komona Cluster<br>
+IRC: #leap @ irc.freenode.net</p>
+
+</section>
+<section>
+
+<h1>What to expect</h1>
+
+<ul>
+  <li>Short introduction to LEAP</li>
+  <li>Install LEAP provider: VPN or encrypted Email (or both if time allows)</li>
+  <li>Test provider using Bitmask client (Android, Mac, Linux, sorry no Windows so far)</li>
+</ul>
+
+<aside class="notes">
+
+<ul>
+  <li>Ask who wants to setup a provider, and what services they are interested in</li>
+  <li>Note: Focus on encrypted mail, VPN: Requires a second IP</li>
+  <li>Rush through the first part, then show more details during deploy phase (~20 mins)</li>
+</ul>
+
+</aside>
+
+</section>
+<section>
+<section>
+
+<p><img src="./images/kid-jumping.svg" width="20%" height="20%"></p>
+
+<h1>Introduction to LEAP</h1>
+
+</section>
+<section>
+
+<h1>Goals</h1>
+
+<ul>
+  <li>“Provider in a box”</li>
+  <li>Make encryption as easy to use as possible</li>
+  <li>Strict client encryption</li>
+</ul>
+
+</section>
+<section>
+
+<h1>Increase User experience</h1>
+
+<p><img src="./images/pizarra.jpg"></p>
+
+</section>
+<section>
+
+<h1>Protect the provider</h1>
+
+<video width="800" controls="controls" loop="" src="../video/fbi.mp4"></video>
+
+<p><a href="https://mayfirst.org/en/2012/fbi-returns-server/">https://mayfirst.org/en/2012/fbi-returns-server/</a></p>
+
+</section>
+<section>
+
+<h1>What we have</h1>
+
+<ul>
+  <li>Bitmask client: A client that works smoothly with any LEAP provider.</li>
+  <li>LEAP Platform:  A toolkit to make it easy for you to run a federated service provider.</li>
+  <li>New protocols:  So that users don’t need to trust the provider.</li>
+</ul>
+
+</section>
+<section>
+
+<h1>Current Services: VPN</h1>
+
+<ul>
+  <li>Route all your internet traffic through an encrypted channel.</li>
+  <li>Prevent eavesdropping (thiefs in the public network, police, …).</li>
+  <li>Circunvent censorship, surveillancec and geoblocking</li>
+  <li>Prevent leaks (DNS, IPv6, …).</li>
+</ul>
+
+</section>
+<section>
+
+<h1>Current Services: email</h1>
+
+<ul>
+  <li>Transparent end-to-end encryption using OpenPGP.</li>
+  <li>Automatic key discovery and validation.</li>
+  <li>Service provider has no access to user data.</li>
+  <li>Strong protection for metadata, whenever possible.</li>
+  <li>Cloud synchronized for high availability on multiple devices.</li>
+</ul>
+
+</section>
+<section>
+
+<h1>Bitmask client</h1>
+
+<p><img src="./images/bitmask-hex.svg" width="20%" height="20%"></p>
+
+<ul>
+  <li>Currently available for Android (VPN) and Linux (VPN + Email)</li>
+  <li>Windows and MacOS coming soon (with your help even faster!)</li>
+  <li>Formerly Python 2, Twisted and QT</li>
+  <li>Rewritten with Python 2, Twisted and Javascript (React)</li>
+</ul>
+
+</section>
+</section>
+
+<section>
+<section>
+
+<h1>Bitmask client</h1>
+<h2>VPN</h2>
+
+<p><img src="./images/bitmask-dev-demo1.png"></p>
+
+</section>
+<section>
+
+<h1>Bitmask client</h1>
+<h2>VPN</h2>
+
+<p><img src="./images/bitmask-dev-demo2.png"></p>
+
+</section>
+<section>
+
+<h1>Bitmask client</h1>
+<h2>VPN</h2>
+
+<p><img src="./images/bitmask-dev-demo3.png"></p>
+
+</section>
+<section>
+
+<h1>Bitmask client</h1>
+<h2>VPN</h2>
+
+<pre><code>--- ~ » curl -s ipinfo.io
+{
+  "ip": "198.252.153.83",
+  "hostname": "No Hostname",
+  "city": "Seattle",
+  "region": "Washington",
+  "country": "US",
+  "loc": "47.6062,-122.3321",
+  "org": "AS16652 Riseup Networks",
+  "postal": "98194"
+}
+</code></pre>
+
+</section>
+<section>
+
+<h1>Bitmask for Android</h1>
+<h2>VPN</h2>
+
+<p><img src="./images/bitmask-android.png"></p>
+
+</section>
+</section>
+
+<section>
+<section>
+
+<h1>Bitmask client</h1>
+<h2>Encrypted Mail</h2>
+
+<p><img src="./images/bitmask-dev-mail1.png"></p>
+
+</section>
+<section>
+
+<h1>Bitmask Mail</h1>
+
+<p><img src="./images/bitmask-dev-mail2.png"></p>
+
+<aside class="notes">
+
+<ul>
+  <li>Integrated Mailclient using the Pixelated Useragent</li>
+  <li>Not maintained anymore</li>
+  <li>Migrating to Nylas Mail</li>
+</ul>
+
+</aside>
+
+</section>
+<section>
+
+<h1>Bitmask Mail</h1>
+
+<p><img src="./images/bitmask-dev-bitmask-mail.png"></p>
+
+</section>
+<section>
+
+<h1>Bitmask Mail</h1>
+<h2>Composing</h2>
+
+<p><img src="./images/bitmask-dev-bitmask-mail-compose.png"></p>
+
+</section>
+</section>
+
+<section>
+<section>
+
+<h1>Key management</h1>
+
+<ul>
+  <li>Automated keylookup and validation.</li>
+</ul>
+
+</section>
+<section>
+
+<h1>Keys, Keys, Keys</h1>
+
+<pre><code>--- » gpg --search-keys snowden
+gpg: data source: https://ntzwrk.org:443
+(1)	Snowden
+	  4096 bit RSA key 0xE941A4612E67D76A, created: 2017-03-24
+(2)	This Is Snowden
+	  4096 bit RSA key 0xBB44DF1AFC479844, created: 2017-03-20
+(3)	Edward Snowden &lt;trump2020buildawall@gmail.com&gt;
+	  4096 bit RSA key 0xA15DD46C59051BDB, created: 2017-03-12, expires: 2022-03-11
+(4)	Edward Snowden &lt;trump2020buildawall@gmail.com&gt;
+	  4096 bit RSA key 0xE64ECB1548116AEB, created: 2017-03-10, expires: 2022-03-09
+(5)	Snowden &lt;sfogert@gmail.com&gt;
+	  3072 bit RSA key 0xE643E968226937A1, created: 2017-03-10
+(6)	Edward Snowden &lt;joshing@protonmail.com&gt;
+	  4096 bit RSA key 0x2C3C1EFA83946932, created: 2017-01-20, expires: 2021-01-20
+(7)	Edward Snowden (Very secret) &lt;ed_snowden2016@outlook.com&gt;
+	  2048 bit RSA key 0xDC245D84A0F97A17, created: 2016-12-14
+(8)	Edward Snowden
+	  4096 bit RSA key 0xFAD43291D0951541, created: 2016-12-10
+(9)	Edward Joseph Snowden &lt;snowden@edwardsnowden&gt;
+	  4096 bit RSA key 0x34BD314D37015D55, created: 2016-11-02, expires: 2020-11-02
+(10)	snowden &lt;snowdenet@163.com&gt;
+	  3072 bit RSA key 0xFD764233079ACE40, created: 2016-10-11
+(11)	Edvard Snowden &lt;lordkott1987@gmail.com&gt;
+	  2048 bit RSA key 0xF5BE6495E2210CE1, created: 2016-10-07
+Keys 1-11 of 146 for "snowden".  Enter number(s), N)ext, or Q)uit &gt;
+</code></pre>
+
+</section>
+</section>
+
+<section>
+<section>
+
+<h1>LEAP Platform</h1>
+
+<ul>
+  <li>Configuration Management using puppet</li>
+  <li>Installs and configures the servers</li>
+  <li>leap_cli is the tool to deploy to the servers</li>
+</ul>
+
+</section>
+<section>
+
+<h1>LEAP Platform Example: Setup single node email provider</h1>
+
+<pre><code>sudo gem install leap_cli
+leap new example --domain workshop.bitmask.net
+cd example
+leap add-user --self
+leap cert ca
+leap cert csr
+leap node add workshop \
+  services:couchdb,webapp,soledad,mx ip_address:1.1.1.3
+leap init node
+leap deploy
+</code></pre>
+
+</section>
+<section>
+
+<h1>LEAP Platform: Install and configure the server(s)</h1>
+
+<ul>
+  <li>Email: Postfix, spamassassin, clamav</li>
+  <li>Database: couchdb, stunnel</li>
+  <li>Webserver: apache</li>
+  <li>Encrypting remailer: leap-mx</li>
+  <li>Synchronisation: soledad</li>
+  <li>Account management, issue tracking: leap-webapp</li>
+  <li>Firewall: shorewall</li>
+  <li>Monitoring: nagios, check_mk</li>
+  <li>…</li>
+</ul>
+
+</section>
+</section>
+<section>
+
+<h1>Server-side techstack</h1>
+
+<ul>
+  <li>PLatform: Puppet</li>
+  <li>leap_cli: ruby</li>
+  <li>leap_web: Ruby on Rails</li>
+  <li>leap_mx, soledad: Python 2/Twisted</li>
+</ul>
+
+</section>
+<section>
+
+<h1>Client-side techstack</h1>
+
+<ul>
+  <li>Bitmask client: Python 2, Twisted, React JS</li>
+  <li>Bitmask Mail (a.k.a. Pixelated Useragent): Python 2, Twisted, FlightJS</li>
+</ul>
+
+</section>
+<section>
+
+<h1>Soledad</h1>
+
+<ul>
+  <li>Acronym for “Synchronization Of Locally Encrypted Data Among Devices”</li>
+  <li>Searchable client-encrypted synchronized database</li>
+</ul>
+
+</section>
+<section>
+<section>
+
+<h1>LEAP Webapp</h1>
+
+<ul>
+  <li>API for user registration and authentication</li>
+  <li>User Management</li>
+  <li>Integrated Issue Tracker</li>
+  <li>Payment processing</li>
+  <li>Customisable</li>
+</ul>
+
+</section>
+<section>
+
+<h1>LEAP Webapp Main Page</h1>
+
+<p><img src="./images/leap-webapp1.png" width="100%" height="100%"></p>
+
+</section>
+<section>
+
+<h1>LEAP Webapp Account Management</h1>
+
+<p><img src="./images/leap-webapp2.png" width="100%" height="100%"></p>
+
+</section>
+</section>
+<section>
+
+<p><img src="./images/kid-jumping.svg" width="20%" height="20%"></p>
+
+<h1>LEAP Encryption Access Project</h1>
+<h2>Platform Workshop</h2>
+
+</section>
+<section>
+
+<h1>System requirements</h1>
+
+<ul>
+  <li>A remote sever/VM installed with fresh Debian jessie (!) OS</li>
+  <li>Physical or paravirtualized Server (KVM, Xen, OpenStack, Amazon, but not VirtualBox or OpenVZ)</li>
+  <li>Depending on the service 1-4 GB RAM, &gt;3 GB disk space</li>
+  <li>Able to login as root with ssh key</li>
+  <li>Second public IPv4 (for VPN only)</li>
+</ul>
+
+<aside class="notes">
+
+<ul>
+  <li>Please pair with your neighbour</li>
+  <li>When you are stuck, pls tell us - if it can be fixed easily, great.</li>
+  <li>If not, pls just continue to watch the demo,<br>
+we can help you out later.</li>
+</ul>
+
+</aside>
+
+</section>
+<section>
+
+<h1>Tutorials</h1>
+
+<ul>
+  <li>These slides: <a href="https://leap.se/slides/platform-workshop">https://leap.se/slides/platform-workshop</a></li>
+  <li>Quick VPN tutorial: <a href="https://leap.se/en/docs/platform/tutorials/single-node-vpn">https://leap.se/en/docs/platform/tutorials/single-node-vpn</a></li>
+</ul>
+
+</section>
+<section>
+
+<h1>Install prerequisites</h1>
+
+<ul>
+  <li>Ruby</li>
+  <li>leap-cli gem to manage your provider config on your workstation/laptop</li>
+</ul>
+
+<aside class="notes">
+
+<ul>
+  <li>The Provider config contains secret key material which should not reside on the server for security reasons.</li>
+  <li>Managing your server(s) happens from you laptop, you should only seldomly login to your servers for debugging.</li>
+  <li>All commands shown here are run from the laptop.</li>
+</ul>
+
+</aside>
+
+</section>
+<section>
+
+<h1>Ruby</h1>
+
+<h2>Debian / Ubuntu</h2>
+
+<pre><code>$ apt install rubygems
+</code></pre>
+
+<h2>Mac OS</h2>
+
+<pre><code>$ brew install ruby
+</code></pre>
+
+<aside class="notes">
+
+<ul>
+  <li>
+<code>$</code> indicates this command should be run on your laptop</li>
+</ul>
+
+</aside>
+
+</section>
+<section>
+
+<h1>Install the LEAP command-line utility</h1>
+
+<pre><code>$ sudo gem install leap_cli
+
+$ leap --version
+leap 1.9.2, ruby 2.3.3
+</code></pre>
+
+</section>
+<section>
+<section>
+
+<h1>Create provider config</h1>
+
+<pre><code>$ leap new --domain workshop.bitmask.net ./workshop
+  Create directory /home/dev/workshop ? y
+  = created /home/dev/workshop/
+
+  The name of the provider: |Example| Workshop demo
+  File path of the leap_platform directory: |/home/dev/leap_platform| 
+  Default email address contacts: |root@workshop.bitmask.net| 
+
+  The platform directory "/home/varac/dev/projects/leap/leap_platform" does not exist.
+  Do you want me to create it by cloning from the
+  git repository https://leap.se/git/leap_platform.git? y
+  …  
+</code></pre>
+
+<aside class="notes">
+
+<ul>
+  <li>Just accept the default values</li>
+  <li>The directory name doesn’t mean anything</li>
+  <li>Slides below only for cloning leap_platform with different branches</li>
+</ul>
+
+</aside>
+
+</section>
+<section>
+
+<h1>leap_platform master branch build status</h1>
+
+<p>Leap Platform Build Status: <a href="https://0xacab.org/leap/platform/commits/master"><img src="https://0xacab.org/leap/platform/badges/master/build.svg" alt="Build Status"></a></p>
+
+<p>see <a href="https://0xacab.org/leap/platform/">https://0xacab.org/leap/platform/</a></p>
+
+</section>
+<section>
+
+<h1>Optional: Use latest release tag for stable version</h1>
+
+<p>If the build status of current leap_platform:master failed we need to checkout the last stable version of the leap_platform:</p>
+
+<pre><code>git clone -b version/0.10.0 https://leap.se/git/leap_platform \
+  ../leap_platform
+</code></pre>
+
+</section>
+</section>
+<section>
+
+<h1>Add your ssh key</h1>
+
+<pre><code>$ leap user add --self
+</code></pre>
+
+</section>
+<section>
+
+<h1>SSL certificates</h1>
+
+<p>Create a SSL certificate authority and a certificate signining request:</p>
+
+<pre><code>$ leap cert ca
+$ leap cert csr
+</code></pre>
+
+<aside class="notes">
+
+<ul>
+  <li>CSR can get used to buy a proper signed cert</li>
+  <li>But letsencrypt is a better option for free, we can deploy proper LE certs</li>
+</ul>
+
+</aside>
+
+</section>
+<section>
+<section>
+
+<h1>Single node VPN provider</h1>
+
+<p>Tutorial:  <a href="https://leap.se/en/docs/platform/tutorials/single-node-vpn">https://leap.se/en/docs/platform/tutorials/single-node-vpn</a></p>
+
+<pre><code>$ export OPTS=(services:webapp,couchdb,openvpn openvpn.gateway_address:37.218.245.4)
+</code></pre>
+
+<aside class="notes">
+
+<ul>
+  <li>Next slides for optional email provider</li>
+</ul>
+
+</aside>
+
+</section>
+<section>
+
+<h1>Single node email provider</h1>
+
+<p>Tutorial:  <a href="https://leap.se/en/docs/platform/tutorials/single-node-email">https://leap.se/en/docs/platform/tutorials/single-node-email</a></p>
+
+<pre><code>$ export OPTS=(services:webapp,couchdb,soledad,mx)
+</code></pre>
+
+</section>
+</section>
+<section>
+
+<h1>Generate diffie-hellman parameters for openvpn</h1>
+
+<pre><code>$ leap cert dh
+</code></pre>
+
+<aside class="notes">
+
+<ul>
+  <li>Only needed for VPN</li>
+</ul>
+
+</aside>
+
+</section>
+<section>
+<section>
+
+<h1>Add an existing remote server</h1>
+
+<pre><code>$ leap node add blackbox ip_address:37.218.245.94 $OPTS
+</code></pre>
+
+</section>
+<section>
+
+<h1>Option B: Create a new server in the cloud</h1>
+
+<ul>
+  <li>Currently works only with AWS ec2</li>
+  <li>
+<code>cloud.json</code> needed for AWS config and credentials</li>
+  <li><a href="https://leap.se/en/docs/platform/guide/virtual-machines">https://leap.se/en/docs/platform/guide/virtual-machines</a> for details</li>
+</ul>
+
+<pre><code>$ leap vm add blackbox services:webapp,couchdb,soledad,mx
+$ leap vm status
+</code></pre>
+
+<aside class="notes">
+
+<ul>
+  <li>
+    <p>Only reocmmended for testing</p>
+
+    <p><code>leap vm key-register</code> is needed if you haven’t done it already</p>
+
+    <p>cp ~/leap/git/bitmask/cloud.json .<br>
+grep -v aws_ cloud.json<br>
+leap vm status | ts</p>
+  </li>
+  <li>Takes 4 mins to finish - questions ?</li>
+  <li>Otherwise show next slide while bootstrapping VM,<br>
+and help out with vagrant</li>
+</ul>
+
+</aside>
+
+</section>
+</section>
+<section>
+
+<h1>Time to deploy !</h1>
+
+<pre><code>$ leap list
+
+$ leap node init blackbox
+
+$ leap deploy blackbox 
+</code></pre>
+
+<aside class="notes">
+
+<pre><code>unbuffer leap node init blackbox | ts
+unbuffer leap deploy blackbox | ts
+</code></pre>
+
+<ul>
+  <li>Email deploy: ~10 min on AWS, 15 min on Greenhost</li>
+  <li>VPN deploy:    ~8 min on AWS, 13 min on Greenhost</li>
+  <li>We’ll setup DNS meanwhile</li>
+</ul>
+
+</aside>
+
+</section>
+<section>
+<section>
+
+<h1>DNS</h1>
+
+<pre><code>leap compile zone
+</code></pre>
+
+<p>Use the listed entries in our DNS provider.</p>
+
+<p>These are for workshop.bitmask.net (in this workshop’s case):</p>
+
+<pre><code>@                     IN A      37.218.245.94
+blackbox              IN A      37.218.245.94
+api                   IN A      37.218.245.94
+nicknym               IN A      37.218.245.94
+@                     IN MX 10  blackbox
+@                     IN TXT    "v=spf1 MX ip4:37.218.245.94 -all"
+234072283e._domainkey IN TXT    "v=DKIM1;h=sha256;k=rsa;s=email;p=MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEApdCDTAuRJJa0yx8T3Z7d" "f2NLE0oOvKysLqHqtvJk92Zf8RHYO6/RzpvJ5s51fPfOfyLnAjEzGs3gBL5GkWNV" "hLyMB9TzYnuQ9lmnz3ep3Hyh8U9yPVmNu1YZDrMYGaeoHE6FZXkmvrtBUOv3XAZw" "4BNQwdcHCa/Z9iWgMDtBx0h+56DRDTOrJvr7M/7qGxknBo0FnnQ/Qhw9GQjkTg0h" "UmFZjuvx3BmgN/9lCMkrjxC7qfADvGYMIYer3iPt0wI7cqAvgWN0a+7iqm2PU+aB" "wLPWOSmWsl3e6wzHW4jFS7EchilGXjHiGQ5WC9anRC6WWr3SomL/cxKZNCjTCfBy" "dwIDAQAB"
+</code></pre>
+
+</section>
+<section>
+
+<h1>DNS</h1>
+<h2>Option A: Fake DNS for new provider</h2>
+
+<p>We are using a domain here without proper DNS, so we need to override our DNS resolution.</p>
+
+<ul>
+  <li>Open another terminal and:
+    <pre><code>cd ~/workshop
+leap compile hosts
+</code></pre>
+  </li>
+</ul>
+
+<p>You need to edit your <code>hosts</code> file with admin privileges and add the output of above command to it.</p>
+
+<ul>
+  <li>Linux: <code>sudo editor /etc/hosts</code>
+</li>
+  <li>MacOS: <code>sudo nano /etc/hosts</code>
+</li>
+</ul>
+
+<p>see <a href="https://leap.se/en/docs/platform/tutorials/quick-start#setup-dns">Quick start tutorial/Setup DNS</a> for details.</p>
+
+</section>
+</section>
+<section>
+
+<h1>Download Bitmask client</h1>
+
+<ul>
+  <li>Download Bitmask from <a href="https://bitmask.net">https://bitmask.net</a></li>
+  <li>Available for Linux, Android, MacOS</li>
+</ul>
+
+<aside class="notes">
+
+<ul>
+  <li>Ubuntu Artful broken</li>
+  <li>Download takes a bit (75mb), so we start it before it’s time for questions ?</li>
+  <li>Any potential Windows contributors ?</li>
+</ul>
+
+</aside>
+
+<h1>Questions ?</h1>
+
+</section>
+<section>
+
+<h1>Let’s encrypt certificates</h1>
+
+<p>For proper, free-of-cost TLS certificates issued<br>
+by <a href="https://letsencrypt.org/">https://letsencrypt.org/</a>:</p>
+
+<pre><code>$ leap cert register
+$ leap cert renew workshop.bitmask.net
+$ leap deploy --tags x509 --fast
+</code></pre>
+
+<p>Check <a href="https://workshop.bitmask.net">https://workshop.bitmask.net</a> in browser afterwards.</p>
+
+</section>
+<section>
+
+<h1>Test if things work correctly</h1>
+
+<pre><code>$ leap test
+</code></pre>
+
+</section>
+<section>
+
+<h1>Use Bitmask</h1>
+
+<ul>
+  <li>Extract downloaded Bitmask archive, and run ./bitmask-0.10.2/bitmask</li>
+  <li>Add workshop.bitmask.net as a new provider</li>
+  <li>Register a new user</li>
+</ul>
+
+<aside class="notes">
+
+<p>Show:</p>
+
+<ul>
+  <li>
+    <p>VPN</p>
+  </li>
+  <li>Mail to myself</li>
+  <li>Mail to/from other workshop participants</li>
+  <li>Mail from outside <code>swaks -t varac@workshop.bitmask.net</code>
+</li>
+  <li>Bitmask mail now Pixelated, migration to Nylas Mail client<br>
+…</li>
+</ul>
+
+</aside>
+
+</section>
+<section>
+
+<h1>Try more</h1>
+
+<ul>
+  <li>
+    <p>LEAP Demo provider (Email): <a href="https://mail.bitmask.net">https://mail.bitmask.net</a></p>
+  </li>
+  <li>
+    <p>LEAP Demo provider (VPN):   <a href="https://demo.bitmask.net">https://demo.bitmask.net</a></p>
+  </li>
+</ul>
+
+</section>
+<section>
+
+<h1>Contribute</h1>
+
+<ul>
+  <li>
+    <p>Please consider to contribute - any help with QA or other is appreciated !  <img class="emoji" alt=":heart:" src="https://assets-cdn.github.com/images/icons/emoji/unicode/2764.png"></p>
+  </li>
+  <li>User experience / QA</li>
+  <li>Python / Twisted</li>
+  <li>JS / React</li>
+  <li>MacOS</li>
+  <li>Windows</li>
+  <li>Puppet</li>
+</ul>
+
+<p><a href="https://leap.se/en/docs/get-involved">https://leap.se/en/docs/get-involved</a><br>
+<a href="https://leap.se/en/docs/get-involved/project-ideas">https://leap.se/en/docs/get-involved/project-ideas</a></p>
+
+<aside class="notes">
+
+<ul>
+  <li>Short of funding, looking for contributors</li>
+  <li>Show get involved and project ideas website</li>
+</ul>
+
+</aside>
+
+</section>
+<section>
+
+<h1>Thanks!</h1>
+
+<ul>
+  <li>LEAP Encryption Access Project: <a href="https://leap.se">https://leap.se</a>
+</li>
+  <li>Bitmask Application: <a href="https://bitmask.net">https://bitmask.net</a>
+</li>
+  <li>Github: <a href="https://github.com/leapcode">https://github.com/leapcode</a>
+</li>
+  <li>Twitter: <a href="https://twitter.com/leapcode">https://twitter.com/leapcode</a>
+</li>
+  <li>IRC: #leap@freenode</li>
+  <li>Come by: Anarchist Assembly, Hall 2, Komona Cluster</li>
+</ul>
+
+</section>
+<section>
+<section>
+
+<h1>Etc</h1>
+
+</section>
+<section>
+
+<h1>Bitmask Schema</h1>
+
+<p><img src="./images/schema.jpg"></p>
+
+</section>
+</section>

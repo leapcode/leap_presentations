@@ -1,0 +1,18 @@
+.reveal h1 {
+	font-size: 1.5em;
+}
+
+.reveal h2 {
+	font-size:1.3em;
+	hyphens: auto;
+}
+
+.reveal code {
+	font-size:1.2em;
+	line-height:1.0em;
+}
+
+.reveal pre code {
+	width: 99%;
+	margin: 20px auto;
+}
