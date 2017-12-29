@@ -4,7 +4,7 @@
 # Generate slides
 
     reveal-ck generate
-    chromium-browser slides/index.html
+    chromium-browser --temp-profile file:///home/varac/dev/projects/leap/git/leap_presentations/platform-workshop/slides/index.html
 
 # Prepare presentation
 
@@ -21,7 +21,7 @@ Upload final slides and share URL https://leap.se/slides/platform-workshop
 
 Start fresh
 
-    rm -rf ~/leap/workshop.bitmask.net ~/.leap/pixelated ~/leap/workshop.bitmask.net
+    rm -rf ~/.config/leap ~/.leap/pixelated  ~/workshop
 
 # Todo
 
@@ -32,8 +32,6 @@ Start fresh
 - Anonymous feedback
 
 - Use custom header/footer for all slides
-
-- Next time: Add a VPN node ?
 
 ## Update Docuementation
 

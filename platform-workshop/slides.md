@@ -14,6 +14,15 @@ Introduction:
 
 <img src="./images/kid-jumping.svg" width="20%" height="20%">
 
+# LEAP Encryption Access Project
+## Provider installation workshop
+
+Download the bitmask client: https://bitmask.net
+
+---
+
+<img src="./images/kid-jumping.svg" width="20%" height="20%">
+
 # LEAP Provider installation workshop
 
 If you want to use Vagrant during this session
@@ -348,8 +357,8 @@ leap deploy
 
 # Tutorials
 
-These slides: https://leap.se/slides/platform-workshop
-
+- These slides: https://leap.se/slides/platform-workshop
+- Quick VPN tutorial: https://leap.se/en/docs/platform/tutorials/single-node-vpn
 ---
 
 # Install prerequisites
@@ -472,13 +481,24 @@ $ leap cert csr
 Tutorial:  https://leap.se/en/docs/platform/tutorials/single-node-vpn
 
 ```
-$ export OPTS='services:webapp,couchdb,openvpn openvpn.gateway_address:37.218.245.4'
+$ export OPTS=(services:webapp,couchdb,openvpn openvpn.gateway_address:37.218.245.4)
 ```
 
 ```notes
-- Next slides for dh parameters
+- Next slides for optional email provider 
 ```
+
 ---
+
+# Single node email provider
+
+Tutorial:  https://leap.se/en/docs/platform/tutorials/single-node-email
+
+```
+$ export OPTS=(services:webapp,couchdb,soledad,mx)
+```
+
+***
 
 # Generate diffie-hellman parameters for openvpn
 
@@ -486,18 +506,10 @@ $ export OPTS='services:webapp,couchdb,openvpn openvpn.gateway_address:37.218.24
 $ leap cert dh
 ```
 
-***
-
-# Single node email provider
-
-Tutorial:  https://leap.se/en/docs/platform/tutorials/single-node-email
-
+```notes
+- Only needed for VPN 
 ```
-$ export OPTS='services:webapp,couchdb,soledad,mx'
-```
-
 ***
-
 # Add an existing remote server
 
 ```
