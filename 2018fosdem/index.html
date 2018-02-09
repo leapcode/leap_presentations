@@ -1,0 +1,449 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+
+	<title>
+	Bitmask: encryption for mere mortals
+	</title>
+
+	<meta name="description" content=""
+	<meta name="author" content="kwadronaut">
+
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+	<link rel="stylesheet" href="css/reveal.css">
+	#<link rel="stylesheet" href="css/theme/sky2.css" id="theme">
+	#<link rel="stylesheet" href="css/theme/solarized.css" id="theme">
+	<link rel="stylesheet" href="css/theme/night.css" id="theme">
+
+	<!-- Theme used for syntax highlighting of code -->
+	<link rel="stylesheet" href="lib/css/zenburn.css">
+
+	<!-- Printing and PDF exports -->
+	<script>
+		var link = document.createElement( 'link' );
+		link.rel = 'stylesheet';
+		link.type = 'text/css';
+		link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+		document.getElementsByTagName( 'head' )[0].appendChild( link );
+	</script>
+
+	<!--[if lt IE 9]>
+	<script src="lib/js/html5shiv.js"></script>
+	<![endif]-->
+</head>
+
+<body>
+<div class="reveal">
+
+<div class="slides">
+<section>
+	<section data-markdown data-background-size="35%" data-background="images/kid-jumping.svg">
+	# BitmasK: encryption for mere mortals
+	### FOSDEM 2018
+	### kali - meskio - kwadronaut
+	<h3><a href="https://leap.se">https://leap.se</a></h3>
+	</section>
+</section>
+<section>
+	<section data-markdown>
+	## Problem: encrypted email is ...complicated
+	</section>
+
+	<section>
+	<video autoplay="false" width="800" controls="controls" loop src="video/gpgforjournalists.mp4"></video>
+	</section>
+	<section>
+	<img src="images/pgp.png">
+	</section>
+
+	<section>
+	<img src="images/pizarra.jpg">
+	</section>
+
+</section>
+<section>
+	<section data-markdown data-background-size="65%" data-background="images/silos.jpg">
+	# Problem: providers
+	</section>
+
+	<section>
+	<img src="images/lavabit.png">
+	</section>
+
+	<section >
+	<h2> Peer to peer?</h2><br/>
+
+	<img class="fragment" src="images/peer2peer.jpg" />
+
+	</section>
+
+
+</section>
+
+<section>
+  <h1>Better federation!</h1>
+  <h3>
+    <ul>
+      <li class="fragment">Protect providers from their users</li>
+      <li class="fragment">Protect users from the provider</li>
+    </ul>
+  </h3>
+  <aside class="notes">
+  sysadmins deserve a life too!
+  </aside>
+</section>
+
+<section>
+    <h2>What does<br>LEAP do?</h2>
+    <ul>
+      <li class="fragment">
+      <b>LEAP Platform:</b><br>toolkit to make it easier to run a service provider</li>
+      <li class="fragment">
+      <b>New protocols:</b><br>so no need to trust your connection provider</li>
+      <li class="fragment">
+      <b>Bitmask client:</b><br>smooth working client with compatible providers</li>
+     </ul>
+</section>
+
+<section>
+        <section data-markdown>
+            # leap mail service
+            * End-to-end encryption
+            * Backwards compatible with email and current OpenPGP usage
+            * Service provider has no access to user data
+            * Automatic key discovery and validation
+            * Cloud synchronized for high availability on multiple devices
+        </section>
+	<section>
+        <img src="./images/schema.jpg" />
+        <aside class="notes">
+        smtp imap
+        </aside>
+	</section>
+        <section>
+        <h2>email service</h2>
+
+        <img src="./images/mail_service.jpg" />
+        <aside class="notes">
+        smtp imap
+        </aside>
+        </section>
+
+        <section>
+        <h2>soledad</h2>
+        <img src="./images/soledad.jpg" />
+        </section>
+
+        <section>
+        <h2>mx</h2>
+        <img src="./images/mx.jpg" />
+        </section>
+
+        <section>
+        <img src="./images/schema.jpg" />
+        </section>
+
+</section>
+<section>
+	<section>
+        <h2> transitional key validation</h2>
+
+	generic rules for automatic key management, <br />transition from TOFU to more advanced ruleset.<br/>
+	<ul>
+	<li> bind key <-> email address </li>
+	<li> key directory</li>
+	<li> endorser (provider)</li>
+	<li> binding info: evidence for "educated guess"</li>
+	<li> verified key transition (automatic)</li>
+	</ul>
+
+        <a href="https://leap.se/en/docs/design/transitional-key-validation">[leap.se/en/docs/design/transitional-key-validation]</a>
+	</section>
+
+	<section>
+	<h2>TOFU</h2>
+        With a bunch of exceptions
+	<aside class="notes">
+ 	current situation
+	</aside>
+	</section>
+
+	<section data-markdown>
+	## 1. First Contact
+
+	When one or more keys are first discovered for a particular email address, the key with the highest validation level is registered.
+	</section>
+
+	<section>
+	<h2>2. Regular Refresh</h2>
+
+	<p>All keys are regularly refreshed to check for modified expirations, or new subkeys, or new keys signed by old keys.</p>
+	<p><small>This refresh SHOULD happen via some anonymizing mechanism.</small></p>
+	</section>
+
+	<section>
+	<h2>3. Key Replacement</h2>
+
+	<p>A registered key MUST be replaced by a new key in one of the following situations, and ONLY these situations:</p>
+	<ul>
+	<li class="fragment">Verified key transitions.</li>
+	<li class="fragment">If the user manually verifies the fingerprint of the new key.</li>
+	<li class="fragment">If the registered key is expired or revoked and the new key is of equal or higher validation level.</li>
+	<li class="fragment">If the registered key has never been successfully used and the new key has a higher validation level.</li>
+	<li class="fragment">If the registered key has no expiration date.</li>
+	</ul>
+
+	<aside class="notes">
+ 	verified key transtion == signed by the previous
+	</aside>
+	</section>
+</section>
+        <section data-markdown>
+        ## VPN
+
+        * Prevent eavesdropping.
+        * Circunvent internet censorship.
+        * Prevent leaks (DNS, IPv6, ...).
+        </section>
+
+        <section>
+        <h2>LEAP platform</h2>
+        <pre class="fragment"><code class="hljs" data-trim contenteditable>
+sudo gem install leap_cli
+leap new example --domain example.org
+cd example
+leap add-user --self
+leap cert ca
+leap cert dh
+leap cert csr
+leap node add blueberry services:openvpn \
+     ip_address:1.1.1.1 openvpn.gateway_address:1.1.1.2
+leap node add raspberry services:couchdb,webapp \
+     ip_address:1.1.1.3
+leap init node
+leap deploy
+        </code></pre>
+        <aside class="notes">
+        Usability for sysadmins
+        </aside>
+</section>
+<section>
+	<section data-markdown>
+	## sysadmins are human
+	### and deserve usability too
+
+	</section>
+	<section data-markdown>
+	  ## "leap deploy"
+	</section>
+	<section>
+	<img src="images/leap-webapp2.png">
+	</section>
+</section>
+<section>
+
+	<section>
+	<img src="images/jump.png">
+        </section>
+
+ 	<section data-markdown>
+	## show me the code!
+	<a href="https://0xacab.org/leap/">https://0xacab.org/leap/</a>
+	* ~10 important repos
+	* GPL code
+	</section>
+</section>
+<section>
+	<section data-markdown>
+	# current state
+	</section>
+
+	<section data-markdown>
+	## Email Beta (0.10…)
+	### works on Linux
+	## Bitmask VPN
+	### works on Linux && Android
+
+	</section>
+
+	<section data-markdown>
+	## next steps
+	* OSX and windows
+	</section>
+</section>
+
+<section>
+	<img src="images/mycelia.jpg">
+	<h2>let a thousand providers bloom</h2>
+	</section>
+
+	<section>
+	<h2>🐧 thanks! questions?</h2>
+	<img src="images/contact-QR.png" alt="QR with info contact for leap" height="35%" width="35%">
+	<h3><a href="https://bitmask.net">https://bitmask.net</a></h3>
+	<h3><a href="https://leap.se">https://leap.se</a></h3>
+	<h3><a href="https://katzenpost.mixnetworks.org/#">katzenpost.mixnetworks.org </a>😼</h3>
+	</section>
+</section>
+<section>
+</section>
+
+<section>
+	<section>
+	<img src="images/downloadme.png">
+	</section>
+
+	<section>
+	<img src="images/thunderbird.png">
+	</section>
+
+	<section>
+	<img src="images/tb1.png">
+	</section>
+
+	<section>
+	<img src="images/tb1.png">
+	</section>
+
+	<section>
+	<img src="images/box.png">
+	</section>
+</section>
+
+<section>
+	<section data-markdown>
+	## 2. ability to use multiple devices
+	</section>
+
+	<section data-markdown>
+	# 🔑  🔄
+	### Synchronization Of
+	### Locally Encrypted Data Among Devices
+	</section>
+
+	<section data-markdown>
+	# data = 🖂  + 🔑 
+	</section>
+</section>
+
+<section>
+	<section data-markdown>
+	## bitmask keymanager
+	## requires no user interaction
+	</section>
+
+	<section data-markdown>
+	## interoperability is a must
+	### many projects converging
+	#### (Watch AUTOCRYPT: Enigmail, K9, Mailpile, Bitmask)
+	</section>
+</section>
+
+
+<section>
+	<section data-markdown>
+	## SOLEDAD
+	* Synchronization of Locally Encrypted Data Among Devices
+	* auth: srp
+	* kdf: scrypt
+	* AES-256-GCM
+	* built on top of canonical's u1db
+	* vector clocks
+	* clientside: sqlcipher backend
+	* serverside: couchdb cluster
+	</section>
+
+	<section data-markdown>
+	## Problem: Attachments
+	* Syncing blobs in a convoluted store
+	* Pluggable BlobsIO backend for server (in dev)
+	* FS as MVP, others welcome!
+	</section>
+
+</section>
+
+<section>
+	<section data-markdown>
+	# Validation levels
+
+	low == less trust on the source
+	</section>
+
+	<section data-markdown>
+	## 1. Weak Chain
+	<sub>sks key servers, email attached key, OpenPGP header, ...</sub>
+	</section>
+
+	<section data-markdown>
+	## 2. Provider Trust
+	<sub>webfinger, provider mailvelope</sub>
+
+	Note:
+	* Certified by the provider
+	* Not auditable
+	</section>
+
+	<section data-markdown>
+	## 3. Provider Endorsement
+	<sub>NickNym</sub>
+
+	Note:
+	* auditable
+	</section>
+
+	<section data-markdown>
+	## 4. Historical Auditing
+	<sub>CONIKS, google's transparent keyserver</sub>
+	</section>
+
+	<section data-markdown>
+	## 5. Known Key
+	<sub>client pinned keys</sub>
+	</section>
+
+	<section data-markdown>
+	## 6. Fingerprint
+	<sub>manual verification</sub>
+	</section>
+</section>
+
+<!-- END OF THE TALK -->
+
+</div>
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.js"></script>
+
+		<script>
+
+			// More info https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+			        /*parallaxBackgroundImage: 'images/rainforest.jpg', */
+				/*parallaxBackgroundSize: '2400px 1758px',*/
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+
+				transition: 'slide', // none/fade/slide/convex/concave/zoom
+
+				// More info https://github.com/hakimel/reveal.js#dependencies
+				dependencies: [
+					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'plugin/zoom-js/zoom.js', async: true },
+					{ src: 'plugin/notes/notes.js', async: true }
+				]
+			});
+
+		</script>
+
+	</body>
+</html>

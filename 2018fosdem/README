@@ -1,0 +1,9 @@
+The 2 awesome improvisers saved the talk from boredom, most of it is coming over from europython, iff, calafou talks with some changes/additions/etc.
+
+The combination of vertical slides+notes+fragments (pieces sliding in/out) seems to be broken.
+CHANGES HAVE BEEN MADE DIRECTLY IN HTML!~!!!!!!
+
+Make sure to install some emoji font, flush font cache and/or restart programs!
+apt install fonts-symbola for example
+
+this is a slightly chaotic desk, but it has some extras *after* the end.
